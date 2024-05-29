@@ -38,7 +38,11 @@ struct MoviePoster: View {
             HStack{
                 Text(String(movie.year))
                 Circle().frame(width: 2, height: 2)
-                Text(movie.mpaRating)
+                if movie.mpaRating != "" {
+                    Text(movie.mpaRating)
+                } else {
+                    Text("N/A")
+                }
                 Circle().frame(width: 2, height: 2)
                 Text(String(movie.runtime/60)+"H")
                 Text(String(movie.runtime%60)+"M")

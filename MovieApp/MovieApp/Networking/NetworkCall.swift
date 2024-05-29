@@ -41,7 +41,7 @@ class NetworkCall {
     }
     
     func getMovieDetails(movieId: Int) async throws -> MovieDetail {
-        let endpoint = "https://yts.mx/api/v2/movie_details.json?movie_id=\(movieId)&with_cast"
+        let endpoint = "https://yts.mx/api/v2/movie_details.json?movie_id=\(movieId)&with_cast=true"
         
         guard let url = URL(string: endpoint) else {
             throw ErrorHand.invalidURL

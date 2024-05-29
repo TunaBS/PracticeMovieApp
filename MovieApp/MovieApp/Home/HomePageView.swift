@@ -19,8 +19,12 @@ struct HomePageView: View {
     //                    Text("hello")
                         if isLoaded == true{
                             ToppickMovieView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
+                                .padding(.bottom)
+                            UpComingMoviesView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
+                                .padding(.top)
                         }
                     }
+                    
                 }
                 .scrollIndicators(.hidden)
             }

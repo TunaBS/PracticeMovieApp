@@ -26,13 +26,13 @@ class MovieDetailViewModel {
     func getMovieData(movieId: Int) async {
         do {
             movieDetail = try await networkCall.getMovieDetails(movieId: movieId)
-        }/* catch ErrorHand.invalidURL {
-//            print("invalid url")
-//        } catch ErrorHand.invalidResponse {
-//            print("invalid response")
-//        } catch ErrorHand.invalidData {
-//            print("invalid data")
-        } */ catch {
+        } catch ErrorHand.invalidURL {
+            print("invalid url")
+        } catch ErrorHand.invalidResponse {
+            print("invalid response")
+        } catch ErrorHand.invalidData {
+            print("invalid data")
+        } catch {
             print("problem in fetching")
         }
         isLoaded = false

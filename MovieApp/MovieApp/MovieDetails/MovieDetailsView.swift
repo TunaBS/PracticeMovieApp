@@ -23,17 +23,17 @@ struct MovieDetailsView: View {
                         if let image = phase.image {
                             image
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 200, height: 100)
+                                .aspectRatio(contentMode: .fit)
                                 .cornerRadius(20)
-                            
                         }
                         else {
                             Image("background_dummy_img")
                                 .resizable()
                                 .scaledToFit()
+                                .cornerRadius(20)
                         }
                     }
+                    
                     
                     HStack {
                         ForEach(movie.genres, id: \.self) { genre in
@@ -49,12 +49,21 @@ struct MovieDetailsView: View {
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     
                     HStack{
-                        Text(movie.mpaRating)
-                            .padding(3)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.white, lineWidth: 1)
-                            )
+                        if movie.mpaRating != "" {
+                            Text(movie.mpaRating)
+                                .padding(3)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.white, lineWidth: 1)
+                                )
+                        } else {
+                            Text("N/A")
+                                .padding(3)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.white, lineWidth: 1)
+                                )
+                        }
                         Text(String(movie.year))
                             .padding(3)
                             .overlay(
@@ -83,6 +92,12 @@ struct MovieDetailsView: View {
                     RatingView(movieId: idMovie)
                     Text("Cast")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    
+//                    ForEach(movie.cast, id: \.self) { movieIdForCast in
+//                        NavigationLink(destination: ContentView()) {
+//                            CastView(idMovie: movieIdForCast)
+//                        }
+//                    }
                 }
             }
             .padding()
@@ -90,7 +105,7 @@ struct MovieDetailsView: View {
             .onAppear {
                 Task {
                     await viewModel.getMovieData(movieId: idMovie)
-//                    isLoaded = true
+                    movie = viewModel.movieDetail?.data.movie ?? movie
                 }
             }
         }
