@@ -40,7 +40,8 @@ struct RatingView: View {
             }
             Divider()
                 .frame(height: 100)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
+                .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
 //                .fontWeight(5.0)
             VStack(alignment: .center){
                 Text("Your Rating")

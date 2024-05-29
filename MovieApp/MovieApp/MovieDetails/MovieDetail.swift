@@ -8,12 +8,12 @@
 import Foundation
 
 struct MovieDetail : Codable{
-    struct MovieObject : Codable {
+    struct MovieArray : Codable {
         let movie : Movie
     }
     let status : String
     let statusMessage : String
-    let data : MovieObject
+    let data : MovieArray
 }
 
 

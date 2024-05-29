@@ -15,16 +15,26 @@ class MovieDetailViewModel {
     
     var movieDetail: MovieDetail?
     
-    init(networkCall: NetworkCall = NetworkCall()) {
+    private var isLoaded = true
+    
+    init(networkCall: NetworkCall = NetworkCall(), isLoaded: Bool = true) {
         self.networkCall = networkCall
+        self.isLoaded = isLoaded
     }
     
     @MainActor
     func getMovieData(movieId: Int) async {
         do {
             movieDetail = try await networkCall.getMovieDetails(movieId: movieId)
-        } catch {
+        }/* catch ErrorHand.invalidURL {
+//            print("invalid url")
+//        } catch ErrorHand.invalidResponse {
+//            print("invalid response")
+//        } catch ErrorHand.invalidData {
+//            print("invalid data")
+        } */ catch {
             print("problem in fetching")
         }
+        isLoaded = false
     }
 }

@@ -11,7 +11,7 @@ struct ToppickMovieView: View {
     
     let movieList: [Movie]
     var body: some View {
-        VStack(spacing: 5){
+        VStack(spacing: 2){
             HStack{
                 Text("Top Movie Picks")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
@@ -27,7 +27,7 @@ struct ToppickMovieView: View {
             ScrollView(.horizontal) {
                 HStack(spacing: 15) {
                     ForEach(movieList, id: \.id) { movie in
-                        NavigationLink(destination: ContentView()) {
+                        NavigationLink(destination: MovieDetailsView(idMovie: movie.id)) {
                             MoviePoster(movie: movie)
                         }
                         .buttonStyle(PlainButtonStyle())

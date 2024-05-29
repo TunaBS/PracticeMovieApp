@@ -9,15 +9,16 @@ import SwiftUI
 
 struct MovieDetailsView: View {
     
-    let movieId: Int
+    let idMovie: Int
     @State var movie = Movie.movieShowForTest
-    @State var viewModel = NetworkLoaderViewModel()
-    @State private var isLoaded = false
+    @State var viewModel = MovieDetailViewModel()
+
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                ScrollView(.vertical) {
+            
+            ScrollView(.vertical) {
+                VStack(alignment: .leading) {
                     AsyncImage(url: URL(string: movie.largeCoverImage)) {phase in
                         if let image = phase.image {
                             image
@@ -79,17 +80,23 @@ struct MovieDetailsView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    RatingView(movieId: movieId)
+                    RatingView(movieId: idMovie)
                     Text("Cast")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
             }
             .padding()
             .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+            .onAppear {
+                Task {
+                    await viewModel.getMovieData(movieId: idMovie)
+//                    isLoaded = true
+                }
+            }
         }
     }
 }
 
 #Preview {
-    MovieDetailsView(movieId: 10)
+    MovieDetailsView(idMovie: 10)
 }
