@@ -9,74 +9,75 @@ import SwiftUI
 
 
 
-struct MovieData: Codable{
-    struct Movie: Codable, Identifiable{
-        let id: Int
-        let title: String
-    //    let rating: Float
-    //    let runtime: Float
-    }
-    struct Data: Codable {
-        let movies: [Movie]
-    }
-    let status: String
-    let statusMessage: String
-    let data: Data
-    
-}
+//struct MovieData: Codable{
+//    struct Movie: Codable, Identifiable{
+//        let id: Int
+//        let title: String
+//    //    let rating: Float
+//    //    let runtime: Float
+//    }
+//    struct Data: Codable {
+//        let movies: [Movie]
+//    }
+//    let status: String
+//    let statusMessage: String
+//    let data: Data
+//    
+//}
 
 struct ContentView: View {
     
-    @State private var movieList: MovieData?
-    let columns = [
-        GridItem(.adaptive(minimum: 150))
-    ]
-    
-    let movieData: MovieData
-    let datal: Data
-    let movie: [MovieData.Movie]
-    
+//    @State private var movieList: MovieData?
+//    let columns = [
+//        GridItem(.adaptive(minimum: 150))
+//    ]
+//    
+//    let movieData: MovieData
+//    let datal: Data
+//    let movie: [MovieData.Movie]
+//    
     var body: some View {
-        Text(movieList?.status ?? "Status name not found")
-        Text(movieList?.statusMessage ?? "Status msg not found")
-        
-        NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(movie) {
-                        movieName in NavigationLink{
-                            Text("details here")
-                        } label: {
-                            VStack {
-                                //                            Image(movieName.image)
-                                VStack {
-                                    Text(movieName.title)
-                                        .font(.headline)
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                        }
-                    }
-                    
-                }
-            }
-            .navigationTitle("Movie Mania")
-            .preferredColorScheme(.dark)
-        }
-        .padding()
-        .task {
-            do {
-                movieList = try await getList()
-            } catch ErrorHand.invalidURL {
-                print("invalid url")
-            } catch ErrorHand.invalidData {
-                print("invalid data")
-            } catch ErrorHand.invalidResponse {
-                print("invalid response")
-            } catch {
-                print("default")
-            }
-        }//end of task
+        Text("hello")
+//        Text(movieList?.status ?? "Status name not found")
+//        Text(movieList?.statusMessage ?? "Status msg not found")
+//        
+//        NavigationStack {
+//            ScrollView {
+//                LazyVGrid(columns: columns) {
+//                    ForEach(movie) {
+//                        movieName in NavigationLink{
+//                            Text("details here")
+//                        } label: {
+//                            VStack {
+//                                //                            Image(movieName.image)
+//                                VStack {
+//                                    Text(movieName.title)
+//                                        .font(.headline)
+//                                }
+//                                .frame(maxWidth: .infinity)
+//                            }
+//                        }
+//                    }
+//                    
+//                }
+//            }
+//            .navigationTitle("Movie Mania")
+//            .preferredColorScheme(.dark)
+//        }
+//        .padding()
+//        .task {
+//            do {
+//                movieList = try await getList()
+//            } catch ErrorHand.invalidURL {
+//                print("invalid url")
+//            } catch ErrorHand.invalidData {
+//                print("invalid data")
+//            } catch ErrorHand.invalidResponse {
+//                print("invalid response")
+//            } catch {
+//                print("default")
+//            }
+//        }//end of task
     }//end of body
     
     
@@ -106,11 +107,11 @@ struct ContentView: View {
     }
 }
 
-enum ErrorHand: Error {
-    case invalidURL
-    case invalidResponse
-    case invalidData
-}
+//enum ErrorHand: Error {
+//    case invalidURL
+//    case invalidResponse
+//    case invalidData
+//}
 
 #Preview {
     ContentView()
