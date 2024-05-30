@@ -93,6 +93,14 @@ struct MovieDetailsView: View {
                     Text("Cast")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(movie.cast ?? [], id: \.self) {cast in
+                                CastView(castOfMovie: cast)
+                            }
+                        }
+                    }
+                    
 //                    ForEach(movie.cast, id: \.self) { movieIdForCast in
 //                        NavigationLink(destination: ContentView()) {
 //                            CastView(idMovie: movieIdForCast)

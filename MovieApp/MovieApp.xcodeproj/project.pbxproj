@@ -21,6 +21,8 @@
 		4B48F6102C07472C002A3EAD /* UpComingMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B48F60F2C07472C002A3EAD /* UpComingMoviesView.swift */; };
 		4B48F6122C0748BC002A3EAD /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B48F6112C0748BC002A3EAD /* Cast.swift */; };
 		4B48F6142C074DF7002A3EAD /* CastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B48F6132C074DF7002A3EAD /* CastView.swift */; };
+		4B5066782C0844FF0039F131 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5066772C0844FF0039F131 /* MovieListView.swift */; };
+		4B50667A2C084A750039F131 /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5066792C084A750039F131 /* MovieCard.swift */; };
 		4BE773C22BF7596C002FC945 /* MovieAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE773C12BF7596C002FC945 /* MovieAppApp.swift */; };
 		4BE773C42BF7596C002FC945 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE773C32BF7596C002FC945 /* ContentView.swift */; };
 		4BE773C62BF7596D002FC945 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BE773C52BF7596D002FC945 /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		4B48F60F2C07472C002A3EAD /* UpComingMoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingMoviesView.swift; sourceTree = "<group>"; };
 		4B48F6112C0748BC002A3EAD /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		4B48F6132C074DF7002A3EAD /* CastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastView.swift; sourceTree = "<group>"; };
+		4B5066772C0844FF0039F131 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
+		4B5066792C084A750039F131 /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
 		4BE773BE2BF7596C002FC945 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE773C12BF7596C002FC945 /* MovieAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppApp.swift; sourceTree = "<group>"; };
 		4BE773C32BF7596C002FC945 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +99,15 @@
 			path = MovieDetails;
 			sourceTree = "<group>";
 		};
+		4B5066762C0844E90039F131 /* MovieList */ = {
+			isa = PBXGroup;
+			children = (
+				4B5066772C0844FF0039F131 /* MovieListView.swift */,
+				4B5066792C084A750039F131 /* MovieCard.swift */,
+			);
+			path = MovieList;
+			sourceTree = "<group>";
+		};
 		4BE773B52BF7596B002FC945 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +127,7 @@
 		4BE773C02BF7596C002FC945 /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				4B5066762C0844E90039F131 /* MovieList */,
 				4B48F60A2C06F162002A3EAD /* MovieDetails */,
 				4B48F5F92C06DB15002A3EAD /* Networking */,
 				4B48F5F62C06D81F002A3EAD /* Home */,
@@ -206,10 +220,12 @@
 				4B48F6072C06E3F4002A3EAD /* NetworkLoaderViewModel.swift in Sources */,
 				4B48F6102C07472C002A3EAD /* UpComingMoviesView.swift in Sources */,
 				4B48F5F82C06D83B002A3EAD /* MovieData.swift in Sources */,
+				4B5066782C0844FF0039F131 /* MovieListView.swift in Sources */,
 				4B48F6092C06EDA3002A3EAD /* MovieDetailsView.swift in Sources */,
 				4BE773C42BF7596C002FC945 /* ContentView.swift in Sources */,
 				4BE773C22BF7596C002FC945 /* MovieAppApp.swift in Sources */,
 				4B48F5FD2C06DBA4002A3EAD /* MovieDetail.swift in Sources */,
+				4B50667A2C084A750039F131 /* MovieCard.swift in Sources */,
 				4B48F6122C0748BC002A3EAD /* Cast.swift in Sources */,
 				4B48F5FF2C06DBCF002A3EAD /* MoviePoster.swift in Sources */,
 				4B48F60E2C0705C2002A3EAD /* RatingView.swift in Sources */,

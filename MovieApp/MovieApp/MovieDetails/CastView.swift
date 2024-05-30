@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct CastView: View {
-    let idMovie: Int
-    @State var castOfMovie = Cast.castForTest
-    @State var viewModel = MovieDetailViewModel()
+//    let idMovie: Int
+    var castOfMovie: Cast
+//    @State var viewModel = MovieDetailViewModel()
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 0) {
-                AsyncImage(url: URL(string: castOfMovie.urlSmallImage)) {phase in
+                AsyncImage(url: URL(string: castOfMovie.urlSmallImage ?? "background_dummy_img")) {phase in
                     if let image = phase.image {
                         image
                             .resizable()
@@ -40,15 +40,15 @@ struct CastView: View {
             .padding()
             .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
             .frame(width: 100,height: 200)
-            .onAppear {
-                Task {
-                    await viewModel.getMovieData(movieId: idMovie)
-                }
-            }
+//            .onAppear {
+//                Task {
+//                    await viewModel.getMovieData(movieId: idMovie)
+//                }
+//            }
         }
     }
 }
 
 #Preview {
-    CastView(idMovie: 10)
+    CastView(castOfMovie: Cast.castForTest)
 }

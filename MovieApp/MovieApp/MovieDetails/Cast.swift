@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct Cast : Codable {
+struct Cast : Codable, Hashable {
+    let imdbCode: Int
     let name: String
     let characterName: String
-    let urlSmallImage: String
+    let urlSmallImage: String?
     
-    static var castForTest = Cast(name: "Daniel Radcliff", characterName: "Harry Potter", urlSmallImage: "background_dummy_img")
+    static var castForTest = Cast(imdbCode: 005458, name: "Daniel", characterName: "Harry Potter", urlSmallImage: "background_dummy_img")
 }
