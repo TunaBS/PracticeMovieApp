@@ -8,10 +8,11 @@
 import Foundation
 
 struct Cast : Codable, Hashable {
-    let imdbCode: Int
+//    let imdbCode: Int
     let name: String
     let characterName: String
     let urlSmallImage: String?
     
-    static var castForTest = Cast(imdbCode: 005458, name: "Daniel", characterName: "Harry Potter", urlSmallImage: "background_dummy_img")
+    static var castForTest = Cast(name: "Daniel", characterName: "Harry Potter", urlSmallImage: "cast_dummy_img")
+    static var ifNoCastDataAvailable = Cast(name: "Sorry no cast data available", characterName: "Not found", urlSmallImage: "cast_dummy_img")
 }

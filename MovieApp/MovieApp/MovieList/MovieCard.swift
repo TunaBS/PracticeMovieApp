@@ -38,10 +38,17 @@ struct MovieCard: View {
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         
                         HStack{
-                            Text(movie.mpaRating)
-                                .padding(2.0)
-                                .overlay(RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.white, lineWidth: 1))
+                            if movie.mpaRating != "" {
+                                Text("PG")
+                                    .padding(2.0)
+                                    .overlay(RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.white, lineWidth: 1))
+                            } else {
+                                Text(movie.mpaRating)
+                                    .padding(2.0)
+                                    .overlay(RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.white, lineWidth: 1))
+                            }
                             Text(String(movie.year))
                                 .padding(2.0)
                                 .overlay(RoundedRectangle(cornerRadius: 5.0).stroke(Color.white, lineWidth: 1))

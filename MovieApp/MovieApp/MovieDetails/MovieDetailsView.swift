@@ -89,13 +89,15 @@ struct MovieDetailsView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    RatingView(movieId: idMovie)
+                    RatingView(movieRate: movie.rating)
+                        .padding()
+                        .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     Text("Cast")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(movie.cast ?? [], id: \.self) {cast in
+                            ForEach(movie.cast ?? [Cast.ifNoCastDataAvailable], id: \.self) {cast in
                                 CastView(castOfMovie: cast)
                             }
                         }
@@ -116,6 +118,7 @@ struct MovieDetailsView: View {
                     movie = viewModel.movieDetail?.data.movie ?? movie
                 }
             }
+            .scrollIndicators(.hidden)
         }
     }
 }

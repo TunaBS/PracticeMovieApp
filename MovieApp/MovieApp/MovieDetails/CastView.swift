@@ -15,7 +15,7 @@ struct CastView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 0) {
-                AsyncImage(url: URL(string: castOfMovie.urlSmallImage ?? "background_dummy_img")) {phase in
+                AsyncImage(url: URL(string: castOfMovie.urlSmallImage ?? "cast_dummy_img")) {phase in
                     if let image = phase.image {
                         image
                             .resizable()
@@ -24,7 +24,7 @@ struct CastView: View {
                         
                     }
                     else {
-                        Image("background_dummy_img")
+                        Image("cast_dummy_img")
                             .resizable()
                             .scaledToFit()
                             .cornerRadius(20)

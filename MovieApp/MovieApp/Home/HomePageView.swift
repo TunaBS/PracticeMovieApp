@@ -13,30 +13,33 @@ struct HomePageView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack{
+//            ZStack{
                 ScrollView {
                     VStack{
-    //                    Text("hello")
                         if isLoaded == true{
                             ToppickMovieView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
                                 .padding(.bottom)
                             UpComingMoviesView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
                                 .padding(.top)
+                            
                         }
                     }
                     
                 }
                 .scrollIndicators(.hidden)
-            }
+//            }
             .onAppear {
                 Task {
                     await viewModel.getMovieData()
                     isLoaded = true
                 }
             }
+            
         }
         
+        
     }
+    
 }
 
 #Preview {

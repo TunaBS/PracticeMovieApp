@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct RatingView: View {
-    let movieId: Int
+    let movieRate: Double
     @State var movie = Movie.movieShowForTest
-    var maxRating: Int = 5
+//    @State var movieRateTest: Movie
     
     var body: some View {
         HStack {
@@ -18,15 +18,15 @@ struct RatingView: View {
                 Text("Overall Rating")
                     .font(.title2)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                Text(String(format: "%.1f", movie.rating))
+                Text(String(format: "%.1f", movieRate))
                 
                 HStack {
-                    ForEach(1..<maxRating + 1) { index in
-                        if Double(index)<=movie.rating/2 {
+                    ForEach(1..<6) { index in
+                        if Double(index)<=movieRate/2 {
                             Image(systemName: "star.fill")
                                 .foregroundColor(.yellow)
                         }
-                        else if Double(index-1)<movie.rating/2 && movie.rating/2<Double(index) {
+                        else if Double(index-1)<movieRate/2 && movieRate/2<Double(index) {
                             Image(systemName: "star.leadinghalf.fill")
                                 .foregroundStyle(.yellow)
                         }
@@ -47,15 +47,15 @@ struct RatingView: View {
                 Text("Your Rating")
                     .font(.title2)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                Text(String(format: "%.1f", movie.rating))
+                Text(String(format: "%.1f", movieRate))
                 
                 HStack {
-                    ForEach(1..<maxRating + 1) { index in
-                        if Double(index)<=movie.rating/2 {
+                    ForEach(1..<6) { index in
+                        if Double(index)<=movieRate/2 {
                             Image(systemName: "star.fill")
                                 .foregroundColor(.yellow)
                         }
-                        else if Double(index-1)<movie.rating/2 && movie.rating/2<Double(index) {
+                        else if Double(index-1)<movieRate/2 && movieRate/2<Double(index) {
                             Image(systemName: "star.leadinghalf.fill")
                                 .foregroundStyle(.yellow)
                         }
@@ -73,5 +73,5 @@ struct RatingView: View {
 }
 
 #Preview {
-    RatingView(movieId: 10)
+    RatingView(movieRate: 6.0)
 }

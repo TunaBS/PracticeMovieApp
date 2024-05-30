@@ -7,8 +7,6 @@
 
 import Foundation
 
-//https://yts.mx/api/v2/movie_details.json
-
 class MovieDetailViewModel {
 //    var movieId: Int
     let networkCall: NetworkCall
