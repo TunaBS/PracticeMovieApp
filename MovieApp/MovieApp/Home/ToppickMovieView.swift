@@ -18,7 +18,7 @@ struct ToppickMovieView: View {
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     Spacer()
-                    NavigationLink(destination: MovieListView(movieList: movieList)) {
+                    NavigationLink(destination: MovieListView()) {
                         Text("See all")
                             .foregroundColor(.white)
                     }

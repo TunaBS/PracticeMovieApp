@@ -5,13 +5,24 @@
 //  Created by BS00880 on 29/5/24.
 //
 
+//
+//  NetworkLoaderViewModel.swift
+//  MovieApp
+//
+//  Created by BS00880 on 29/5/24.
+//
+
 import Foundation
 
 
-class NetworkLoaderViewModel {
+class NetworkLoaderViewModel: ObservableObject {
     let networkCall: NetworkCall
     
-    var movieDatabase: MovieData?
+//    var movieDatabase: MovieData?
+    @Published var movieDatabase: MovieData?
+    
+    
+    
     
     init(networkCall: NetworkCall = NetworkCall()) {
         self.networkCall = networkCall

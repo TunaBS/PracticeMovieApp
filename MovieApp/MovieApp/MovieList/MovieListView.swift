@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct MovieListView: View {
-    let movieList: [Movie]
+//    let movieList: [Movie]
     @State private var isLoaded = false
-    @State private var viewModel = NetworkLoaderViewModel()
+//    @State private var viewModel = NetworkLoaderViewModel()
+    @EnvironmentObject var viewModel: NetworkLoaderViewModel
     var body: some View {
         NavigationStack {
             ScrollView {
                 if isLoaded == true {
                     VStack(alignment: .leading) {
-                        ForEach(movieList, id: \.id) { movie in
+                        ForEach(viewModel.movieDatabase?.data.movies ?? Movie.movieArrayShowForTest, id: \.id) { movie in
                             NavigationLink(destination: MovieDetailsView(idMovie: movie.id)) {
                                 MovieCard(movie: movie)
                             }
@@ -26,8 +27,8 @@ struct MovieListView: View {
                 }
                 
             }
-            .navigationTitle("Movie Lists")
             .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+            .navigationTitle("Movie Lists")
             .onAppear {
                 Task {
                     await viewModel.getMovieData()
@@ -38,6 +39,15 @@ struct MovieListView: View {
     }
 }
 
-#Preview {
-    MovieListView(movieList: Movie.movieArrayShowForTest)
+//#Preview {
+//    MovieListView()
+//}
+
+struct MovieView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView{
+            MovieListView()
+        }
+        .environmentObject(NetworkLoaderViewModel())
+    }
 }

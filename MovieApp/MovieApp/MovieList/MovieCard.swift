@@ -31,28 +31,33 @@ struct MovieCard: View {
                     }
                     VStack(alignment: .leading) {
                         Text(genresString(from: movie.genres))
-//                                        .padding(.horizontal)
+                            .foregroundStyle(.white)
                         
                         Text(movie.title)
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundStyle(.white)
                         
                         HStack{
-                            if movie.mpaRating != "" {
-                                Text("PG")
+                            if movie.mpaRating == "" {
+                                Text("N/A")
+                                    .foregroundStyle(.white)
                                     .padding(2.0)
                                     .overlay(RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.white, lineWidth: 1))
                             } else {
                                 Text(movie.mpaRating)
+                                    .foregroundStyle(.white)
                                     .padding(2.0)
                                     .overlay(RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.white, lineWidth: 1))
                             }
                             Text(String(movie.year))
+                                .foregroundStyle(.white)
                                 .padding(2.0)
                                 .overlay(RoundedRectangle(cornerRadius: 5.0).stroke(Color.white, lineWidth: 1))
                             Text("\(movie.runtime/60)H \(movie.runtime%60)M")
+                                .foregroundStyle(.white)
                                 .padding(2.0)
                                 .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.white, lineWidth: 1))
                         }
@@ -60,6 +65,7 @@ struct MovieCard: View {
                             Image(systemName: "star.fill")
                                 .foregroundColor(.yellow)
                             Text(String(format: "%.1f", movie.rating))
+                                .foregroundStyle(.white)
                             Spacer()
                             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                                 Text("Add to Watchlist")

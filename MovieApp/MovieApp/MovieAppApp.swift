@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct MovieAppApp: App {
+    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                TabViewBelow()
+            }
+            .environmentObject(viewModel)
         }
     }
 }

@@ -26,8 +26,15 @@ import SwiftUI
 //}
 
 struct ContentView: View {
+    
+    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
     var body: some View {
-        HomePageView()
+        Text("Hello World")
+//        HomePageView()
+//        NavigationView {
+//            TabViewBelow()
+//        }
+//        .environmentObject(viewModel)
     }//end of body
 }
 

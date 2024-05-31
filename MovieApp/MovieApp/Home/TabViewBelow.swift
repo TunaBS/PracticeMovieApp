@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabViewBelow: View {
 //    @State var movieListArray = Movie.movieArrayShowForTest
-    @State var viewModel = NetworkLoaderViewModel()
+//    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
     @State private var isLoaded = false
     var body: some View {
         TabView {
@@ -21,10 +21,10 @@ struct TabViewBelow: View {
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
-//            MovieListView(movieList: movieListArray)
-//                .tabItem {
-//                    Image(systemName: "list.bullet")
-//                }
+            MovieListView()
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                }
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")

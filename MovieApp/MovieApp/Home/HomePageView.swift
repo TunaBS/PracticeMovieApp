@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct HomePageView: View {
+//    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel() //changed this
     @State var viewModel = NetworkLoaderViewModel()
     @State private var isLoaded = false
     
     var body: some View {
         NavigationStack {
-//            ZStack{
+//            GeometryReader{
                 ScrollView {
                     VStack{
                         if isLoaded == true{
+                            SlideShowView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
+                                .padding(.bottom)
                             ToppickMovieView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
                                 .padding(.bottom)
                             UpComingMoviesView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
@@ -43,5 +46,7 @@ struct HomePageView: View {
 }
 
 #Preview {
-    HomePageView()
+//    NavigationView {
+        HomePageView()
+//    }
 }

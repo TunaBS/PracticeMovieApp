@@ -16,4 +16,3 @@ struct MovieData : Codable{
     let data : Data
 }
 
-
