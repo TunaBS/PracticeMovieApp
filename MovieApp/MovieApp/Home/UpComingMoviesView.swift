@@ -11,7 +11,7 @@ struct UpComingMoviesView: View {
     
     let movieList: [Movie]
     var body: some View {
-        VStack(spacing: 2){
+        VStack{
             HStack{
                 Text("Upcoming Movies")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
@@ -36,6 +36,7 @@ struct UpComingMoviesView: View {
             }
             
         }
+        .padding()
     }
 }
 

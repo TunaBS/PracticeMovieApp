@@ -28,7 +28,7 @@ struct MoviePoster: View {
             }
             .frame(height: 350)
             Text(movie.title)
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .font(.title3)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .lineLimit(1)
                 .truncationMode(/*@START_MENU_TOKEN@*/.tail/*@END_MENU_TOKEN@*/)
@@ -37,15 +37,20 @@ struct MoviePoster: View {
             
             HStack{
                 Text(String(movie.year))
+                    .font(.caption)
                 Circle().frame(width: 2, height: 2)
                 if movie.mpaRating != "" {
                     Text(movie.mpaRating)
+                        .font(.caption)
                 } else {
                     Text("N/A")
+                        .font(.caption)
                 }
                 Circle().frame(width: 2, height: 2)
                 Text(String(movie.runtime/60)+"H")
+                    .font(.caption)
                 Text(String(movie.runtime%60)+"M")
+                    .font(.caption)
             }
             .font(.footnote)
             .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)

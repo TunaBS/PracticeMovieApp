@@ -12,7 +12,7 @@ struct SlideShowView: View {
     @State private var selectedTab = 0
 //    let tabs = ["Image 1", "Image 2", "Image 3"]
     let indicatorHeight: CGFloat = 10 // Customize indicator height
-    let indicatorColor = Color.blue // Customize indicator color
+    let indicatorColor = Color.white // Customize indicator color
 
     var body: some View {
         VStack {
@@ -47,6 +47,7 @@ struct SlideShowView: View {
                         }
                         .frame(height: 5)
                     }
+                    .padding()
                 }
             }
         }

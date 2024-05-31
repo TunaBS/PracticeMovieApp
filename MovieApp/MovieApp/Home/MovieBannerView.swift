@@ -35,15 +35,16 @@ struct MovieBannerView: View {
                 if let img=phase.image {
                     img
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+//                        .aspectRatio(contentMode: .fill)
                         .cornerRadius(20)
-                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(width: 400, height: 300, alignment: .center)
                 } else {
                     Image("background_dummy_img")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+//                        .aspectRatio(contentMode: .fill)
                         .cornerRadius(20)
-                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(width: 400, height: 300, alignment: .center)
+//                        .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             .overlay {
@@ -52,8 +53,10 @@ struct MovieBannerView: View {
                         HStack{
                             Image(systemName: "star.fill")
                                 .foregroundColor(.white)
+                                .font(.footnote)
                             Text(String(format: "%.1f", movie.rating))
                                 .foregroundColor(.white)
+                                .font(.footnote)
                         }
                         .padding(5.0)
                         .background(Color.white.opacity(0.25))
@@ -71,50 +74,51 @@ struct MovieBannerView: View {
                         VStack(alignment: .leading) {
                             Text("\(movie.title)")
                                 .foregroundColor(.white)
-                                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                .font(.title3)
+                                .lineLimit(1)
                             
-                            HStack{
-                                ForEach(movie.genres, id: \.self) {genre in
-                                    Text("\(genre)")
-                                        .foregroundColor(.white)
-                                    
-                                    if genre != movie.genres.last {
-                                        Circle().frame(width: 3, height: 3).colorInvert()
-                                    }
-                                }
-                            }
+                            Text(genresString(from: movie.genres))
+                                .foregroundStyle(.white)
+                                .lineLimit(1)
+                            
                             
                             HStack {
                                 if movie.mpaRating == "" {
                                     Text("N/A")
                                         .foregroundStyle(.white)
+                                        .font(.footnote)
                                         .padding(2.0)
                                         .overlay(RoundedRectangle(cornerRadius: 5)
                                             .stroke(Color.white, lineWidth: 1))
                                 } else {
                                     Text(movie.mpaRating)
                                         .foregroundStyle(.white)
+                                        .font(.footnote)
                                         .padding(2.0)
                                         .overlay(RoundedRectangle(cornerRadius: 5)
                                             .stroke(Color.white, lineWidth: 1))
                                 }
                                 Text(String(movie.year))
                                     .foregroundStyle(.white)
+                                    .font(.footnote)
                                     .padding(2.0)
                                     .overlay(RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.white, lineWidth: 1))
                                 
                                 Text("\(movie.runtime/60)H \(movie.runtime%60)M")
                                     .foregroundStyle(.white)
+                                    .font(.footnote)
                                     .padding(2.0)
                                     .overlay(RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.white, lineWidth: 1))
                             }
-                            .padding(.bottom)
+//                            .padding(.bottom)
                         }
+                        
                         Spacer()
                         Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                             Text("Add to Watchlist")
+//                                .font(.footnote)
                         })
                         .padding(5.0)
                         .foregroundColor(.white)
@@ -122,17 +126,18 @@ struct MovieBannerView: View {
                         .cornerRadius(10)
                     }
                     .padding()
+                    .background(Color.white.opacity(0.25))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 5).stroke(Color(.white))
+                    }
                 }
-                
-                
-                
             }
-        
-            
-            
         }
-        
-        
+    }
+    
+    
+    private func genresString(from genres: [String]) -> String {
+        genres.joined(separator: " • ")
     }
 }
 

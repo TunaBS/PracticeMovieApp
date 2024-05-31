@@ -12,7 +12,7 @@ struct ToppickMovieView: View {
     let movieList: [Movie]
     var body: some View {
         NavigationStack {
-            VStack(spacing: 2){
+            VStack{
                 HStack{
                     Text("Top Movie Picks")
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
@@ -37,6 +37,7 @@ struct ToppickMovieView: View {
                 }
                 
             }
+            .padding()
         }
         
     }

@@ -14,33 +14,48 @@ struct HomePageView: View {
     
     var body: some View {
         NavigationStack {
-//            GeometryReader{
                 ScrollView {
                     VStack{
+                        
+                        HStack {
+                            VStack(alignment: .leading){
+                                Text("Welcome Back,")
+                                    .font(.title2)
+                                Text("Dianne Russell.")
+                                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                    .fontWeight(.bold)
+                            }
+                            .padding()
+                            Spacer()
+                            
+                            Image(systemName: "rectangle")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.white)
+                                .padding()
+                        }
+                        
                         if isLoaded == true{
                             SlideShowView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
-                                .padding(.bottom)
+                                    .padding(.bottom)
+                            
                             ToppickMovieView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
-                                .padding(.bottom)
+                                    .padding(.bottom)
                             UpComingMoviesView(movieList: viewModel.movieDatabase? .data.movies ?? Movie.movieArrayShowForTest)
-                                .padding(.top)
+                                    .padding(.top)
+                            
                             
                         }
                     }
                     
                 }
                 .scrollIndicators(.hidden)
-//            }
+            }
             .onAppear {
                 Task {
                     await viewModel.getMovieData()
                     isLoaded = true
                 }
             }
-            
-        }
-        
-        
     }
     
 }

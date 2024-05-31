@@ -77,6 +77,7 @@ struct MovieCard: View {
                         }
                         .padding(.top)
                     }
+                    Spacer()
                 }
                 .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
             }
