@@ -14,5 +14,5 @@ struct Cast : Codable, Hashable {
     let urlSmallImage: String?
     
     static var castForTest = Cast(name: "Daniel", characterName: "Harry Potter", urlSmallImage: "cast_dummy_img")
-    static var ifNoCastDataAvailable = Cast(name: "Sorry no cast data available", characterName: "Not found", urlSmallImage: "cast_dummy_img")
+    static var ifNoCastDataAvailable = Cast(name: "No Data", characterName: "No Data", urlSmallImage: "cast_dummy_img")
 }

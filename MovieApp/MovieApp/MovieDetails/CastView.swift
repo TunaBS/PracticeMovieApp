@@ -14,7 +14,7 @@ struct CastView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading) {
                 AsyncImage(url: URL(string: castOfMovie.urlSmallImage ?? "cast_dummy_img")) {phase in
                     if let image = phase.image {
                         image
@@ -30,7 +30,7 @@ struct CastView: View {
                             .cornerRadius(20)
                     }
                 }
-//                .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                .frame(width: 150, height: 150)
                 Text(castOfMovie.name)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .lineLimit(1)
@@ -38,13 +38,8 @@ struct CastView: View {
                     .lineLimit(1)
             }
             .padding()
+            .frame(width: 150)
             .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
-            .frame(width: 100,height: 200)
-//            .onAppear {
-//                Task {
-//                    await viewModel.getMovieData(movieId: idMovie)
-//                }
-//            }
         }
     }
 }

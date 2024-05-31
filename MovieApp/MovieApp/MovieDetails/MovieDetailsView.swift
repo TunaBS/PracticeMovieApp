@@ -12,7 +12,8 @@ struct MovieDetailsView: View {
     let idMovie: Int
     @State var movie = Movie.movieShowForTest
     @State var viewModel = MovieDetailViewModel()
-
+    @State var castNotFound = Movie.movieShowForTest.cast
+    let boolCastNotFound = false
     
     var body: some View {
         NavigationStack {
@@ -100,13 +101,17 @@ struct MovieDetailsView: View {
                             .padding()
                             .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         
-                        Text("Cast")
-                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                        
-                        ScrollView(.horizontal) {
-                            HStack {
-                                ForEach(movie.cast ?? [Cast.ifNoCastDataAvailable], id: \.self) {cast in
-                                    CastView(castOfMovie: cast)
+                        VStack(alignment: .leading){
+                            Text("Cast")
+                                .font(.title3)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(movie.cast ?? [Cast.ifNoCastDataAvailable], id: \.self) {cast in
+                                        CastView(castOfMovie: cast)
+                                    }
+                                    
                                 }
                             }
                         }
