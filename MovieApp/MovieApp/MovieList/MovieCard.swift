@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MovieCard: View {
     var movie: Movie
+    var showWatchListButton: Bool
+//    @Binding var isButtonPressed: Bool
     
     var body: some View {
         VStack {
@@ -67,13 +69,17 @@ struct MovieCard: View {
                             Text(String(format: "%.1f", movie.rating))
                                 .foregroundStyle(.white)
                             Spacer()
-                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                                Text("Add to Watchlist")
-                            })
-                            .padding(5.0)
-                            .foregroundColor(.white)
-                            .background(.purple)
-                            .cornerRadius(10)
+                            
+                            if showWatchListButton {
+                                WatchListButtonView(movie: movie)
+                            }
+//                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+//                                Text("Add to Watchlist")
+//                            })
+//                            .padding(5.0)
+//                            .foregroundColor(.white)
+//                            .background(.purple)
+//                            .cornerRadius(10)
                         }
                         .padding(.top)
                     }
@@ -91,5 +97,5 @@ struct MovieCard: View {
 }
 
 #Preview {
-    MovieCard(movie: Movie.movieShowForTest)
+    MovieCard(movie: Movie.movieShowForTest, showWatchListButton: true)
 }

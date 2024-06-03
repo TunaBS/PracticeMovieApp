@@ -20,7 +20,7 @@ struct SlideShowView: View {
             TabView(selection: self.$selectedTab) {
                 ForEach(movieList, id: \.id) { movie in
                     NavigationLink(destination: MovieDetailsView(idMovie:movie.id)) {
-                        MovieBannerView(movie: movie)
+                        MovieBannerView(movie: movie, showWatchListButton: true)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }

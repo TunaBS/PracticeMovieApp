@@ -19,7 +19,7 @@ struct MovieListView: View {
                     VStack(alignment: .leading) {
                         ForEach(viewModel.movieDatabase?.data.movies ?? Movie.movieArrayShowForTest, id: \.id) { movie in
                             NavigationLink(destination: MovieDetailsView(idMovie: movie.id)) {
-                                MovieCard(movie: movie)
+                                MovieCard(movie: movie, showWatchListButton: true)
                             }
                             .padding(.bottom)
                         }

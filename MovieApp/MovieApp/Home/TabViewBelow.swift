@@ -9,30 +9,47 @@ import SwiftUI
 
 struct TabViewBelow: View {
 //    @State var movieListArray = Movie.movieArrayShowForTest
-//    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
+    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
+    @StateObject var watchListViewModel: WatchListViewModel = WatchListViewModel()
+    
     @State private var isLoaded = false
     var body: some View {
-        TabView {
-            HomePageView()
-                .tabItem {
-                    Image(systemName: "house")
-                }
-            SearchView()
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                }
-            MovieListView()
-                .tabItem {
-                    Image(systemName: "list.bullet")
-                }
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gear")
-                }
+        NavigationStack{
+            TabView {
+                HomePageView()
+                    .tabItem {
+                        Image(systemName: "house")
+                    }
+                SearchView()
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                    }
+                WatchListView()
+                    .tabItem {
+                        Image(systemName: "list.bullet")
+                    }
+                SettingsView()
+                    .tabItem {
+                        Image(systemName: "gear")
+                    }
+            }
         }
+        .environmentObject(viewModel)
+        .environmentObject(watchListViewModel)
     }
 }
 
-#Preview {
-    TabViewBelow()
+//#Preview {
+//        TabViewBelow()
+//    
+//}
+   
+struct TabViewBelow_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView{
+            TabViewBelow()
+        }
+        .environmentObject(NetworkLoaderViewModel())
+        .environmentObject(WatchListViewModel())
+    }
 }

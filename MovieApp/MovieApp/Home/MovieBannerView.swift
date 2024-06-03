@@ -28,6 +28,7 @@ import SwiftUI
 
 struct MovieBannerView: View {
     var movie: Movie
+    var showWatchListButton: Bool
     
     var body: some View {
         ZStack {
@@ -116,14 +117,17 @@ struct MovieBannerView: View {
                         }
                         
                         Spacer()
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                            Text("Add to Watchlist")
-//                                .font(.footnote)
-                        })
-                        .padding(5.0)
-                        .foregroundColor(.white)
-                        .background(.purple)
-                        .cornerRadius(10)
+                        if showWatchListButton {
+                            WatchListButtonView(movie: movie)
+                        }
+//                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+//                            Text("Add to Watchlist")
+////                                .font(.footnote)
+//                        })
+//                        .padding(5.0)
+//                        .foregroundColor(.white)
+//                        .background(.purple)
+//                        .cornerRadius(10)
                     }
                     .padding()
                     .background(Color.white.opacity(0.25))
@@ -142,5 +146,5 @@ struct MovieBannerView: View {
 }
 
 #Preview {
-    MovieBannerView(movie: Movie.movieShowForTest)
+    MovieBannerView(movie: Movie.movieShowForTest, showWatchListButton: true)
 }

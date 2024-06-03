@@ -13,7 +13,9 @@ struct MovieDetailsView: View {
     @State var movie = Movie.movieShowForTest
     @State var viewModel = MovieDetailViewModel()
     @State var castNotFound = Movie.movieShowForTest.cast
+    @EnvironmentObject var watchListViewModel: WatchListViewModel
     let boolCastNotFound = false
+    
     
     var body: some View {
         NavigationStack {
@@ -89,14 +91,19 @@ struct MovieDetailsView: View {
                         Text(movie.descriptionFull)
                             .multilineTextAlignment(.leading)
                         
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+//                        if showWatchListButton {
+//                            WatchListButtonView(movie: movie)
+//                        }
+                        Button(action: {
+                            watchListViewModel.addItems(movie: movie)
+                        }, label: {
                             Text("Add to Watchlist")
                                 .padding(10)
                         })
+                        .frame(maxWidth: .infinity, maxHeight: 100)
                         .background(.purple)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                         RatingView(movieRate: movie.rating)
                             .padding()
                             .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -126,6 +133,7 @@ struct MovieDetailsView: View {
                     movie = viewModel.movieDetail?.data.movie ?? movie
                 }
             }
+            .navigationTitle("Movie Details")
             .scrollIndicators(.hidden)
         }
     }
