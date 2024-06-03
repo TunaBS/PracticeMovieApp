@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie : Codable, Hashable{
+struct Movie : Codable, Hashable, Identifiable{
    
     
     let id : Int

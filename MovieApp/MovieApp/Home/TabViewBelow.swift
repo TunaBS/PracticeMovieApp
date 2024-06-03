@@ -11,6 +11,7 @@ struct TabViewBelow: View {
 //    @State var movieListArray = Movie.movieArrayShowForTest
     @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
     @StateObject var watchListViewModel: WatchListViewModel = WatchListViewModel()
+    @StateObject var searchListMovie: SearchViewModel = SearchViewModel()
     
     @State private var isLoaded = false
     var body: some View {
@@ -36,6 +37,7 @@ struct TabViewBelow: View {
         }
         .environmentObject(viewModel)
         .environmentObject(watchListViewModel)
+        .environmentObject(searchListMovie)
     }
 }
 
@@ -51,5 +53,6 @@ struct TabViewBelow_Previews: PreviewProvider {
         }
         .environmentObject(NetworkLoaderViewModel())
         .environmentObject(WatchListViewModel())
+        .environmentObject(SearchViewModel())
     }
 }
