@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B4738312C0EDF2500A65DC3 /* UIApplicationSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4738302C0EDF2500A65DC3 /* UIApplicationSwift.swift */; };
 		4B48F5F52C06D815002A3EAD /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B48F5F42C06D815002A3EAD /* Movie.swift */; };
 		4B48F5F82C06D83B002A3EAD /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B48F5F72C06D83B002A3EAD /* MovieData.swift */; };
 		4B48F5FB2C06DB27002A3EAD /* NetworkCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B48F5FA2C06DB27002A3EAD /* NetworkCall.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B4738302C0EDF2500A65DC3 /* UIApplicationSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationSwift.swift; sourceTree = "<group>"; };
 		4B48F5F42C06D815002A3EAD /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		4B48F5F72C06D83B002A3EAD /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		4B48F5FA2C06DB27002A3EAD /* NetworkCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCall.swift; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B47382F2C0EDF0E00A65DC3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4B4738302C0EDF2500A65DC3 /* UIApplicationSwift.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4B48F5F62C06D81F002A3EAD /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +188,7 @@
 		4BE773C02BF7596C002FC945 /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				4B47382F2C0EDF0E00A65DC3 /* Extensions */,
 				4B6E52442C0DC72300D7DB21 /* Search */,
 				4B6E523A2C0D802B00D7DB21 /* WatchList */,
 				4B5066882C08996A0039F131 /* Settings */,
@@ -282,6 +293,7 @@
 				4BBCB3792C099B0D00AC8945 /* MovieListViewModel.swift in Sources */,
 				4BBCB37B2C09A73400AC8945 /* MovieBannerView.swift in Sources */,
 				4B6E523E2C0D878C00D7DB21 /* WatchListView.swift in Sources */,
+				4B4738312C0EDF2500A65DC3 /* UIApplicationSwift.swift in Sources */,
 				4B48F5FD2C06DBA4002A3EAD /* MovieDetail.swift in Sources */,
 				4B5066872C08995C0039F131 /* SettingsView.swift in Sources */,
 				4B6E52402C0D87E900D7DB21 /* WatchListButtonView.swift in Sources */,

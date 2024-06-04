@@ -8,26 +8,26 @@
 import Foundation
 import Combine
 
-@MainActor
-class SearchViewModel: ObservableObject {
+
+class SearchViewModel/*: ObservableObject */{
     let networkCall: NetworkCall
     
 //    var movieDatabase: MovieData?
     @Published var movieDatabase: MovieData?
-    @Published var searchText: String = ""
-    private var isLoaded = true
-    
-    @Published private(set) var allMovies: [Movie] = Movie.movieArrayShowForTest
-    @Published private(set) var filteredMovies: [Movie] = []
-    private var cancellable = Set<AnyCancellable> ()
-    
-    var isSearching: Bool {
-        !searchText.isEmpty
-    }
-    
-    var showSearchSuggestions: Bool {
-        searchText.count<5
-    }
+//    @Published var searchText: String = ""
+    /*private*/ var isLoadingData = true
+//
+//    @Published private(set) var allMovies: [Movie] = Movie.movieArrayShowForTest
+//    @Published private(set) var filteredMovies: [Movie] = []
+//    private var cancellable = Set<AnyCancellable> ()
+//    
+//    var isSearching: Bool {
+//        !searchText.isEmpty
+//    }
+//    
+//    var showSearchSuggestions: Bool {
+//        searchText.count<5
+//    }
     
 //    var filteredMovies: [Movie] {
 //        guard !searchText.isEmpty else { return movieDatabase?.data.movies ?? Movie.movieArrayShowForTest}
@@ -36,34 +36,33 @@ class SearchViewModel: ObservableObject {
 //        }
 //    }
     
-    init(networkCall: NetworkCall = NetworkCall(), isLoaded: Bool = true) {
+    init(networkCall: NetworkCall = NetworkCall(), isLoadingData: Bool = true) {
         self.networkCall = networkCall
-        self.isLoaded = isLoaded
-        addSubscribers()
-//        self.isLoaded = isLoaded
+        self.isLoadingData = isLoadingData
+//        addSubscribers()
     }
-    
-    private func addSubscribers() {
-        $searchText
-            .debounce(for: 0.3, scheduler: DispatchQueue.main)
-            .sink { [weak self] searchText in
-                self?.filteredMovies(searchText: searchText)
-            }
-            .store(in: &cancellable)
-    }
-    
-    private func filteredMovies(searchText: String) {
-        guard !searchText.isEmpty else {
-            filteredMovies = []
-            return
-        }
-        let search = searchText.lowercased()
-        filteredMovies = allMovies.filter({movie in
-            let titleMovieSearch = movie.title.lowercased().contains(search)
-            return titleMovieSearch
-        })
-    }
-    
+//    
+//    private func addSubscribers() {
+//        $searchText
+//            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+//            .sink { [weak self] searchText in
+//                self?.filteredMovies(searchText: searchText)
+//            }
+//            .store(in: &cancellable)
+//    }
+//    
+//    private func filteredMovies(searchText: String) {
+//        guard !searchText.isEmpty else {
+//            filteredMovies = []
+//            return
+//        }
+//        let search = searchText.lowercased()
+//        filteredMovies = allMovies.filter({movie in
+//            let titleMovieSearch = movie.title.lowercased().contains(search)
+//            return titleMovieSearch
+//        })
+//    }
+    @MainActor
     func getMovieData(movieName: String) async {
         do {
             movieDatabase = try await networkCall.getSearchList(movieName: movieName)
@@ -76,6 +75,6 @@ class SearchViewModel: ObservableObject {
         } catch {
             print("problem in fetching")
         }
-        isLoaded = false
+        isLoadingData = false
     }
 }

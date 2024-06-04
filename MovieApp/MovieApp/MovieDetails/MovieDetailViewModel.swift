@@ -13,11 +13,11 @@ class MovieDetailViewModel {
     
     var movieDetail: MovieDetail?
     
-    private var isLoaded = true
+    private var isLoadingData = true
     
-    init(networkCall: NetworkCall = NetworkCall(), isLoaded: Bool = true) {
+    init(networkCall: NetworkCall = NetworkCall(), isLoadingData: Bool = true) {
         self.networkCall = networkCall
-        self.isLoaded = isLoaded
+        self.isLoadingData = isLoadingData
     }
     
     @MainActor
@@ -33,6 +33,6 @@ class MovieDetailViewModel {
         } catch {
             print("problem in fetching")
         }
-        isLoaded = false
+        isLoadingData = false
     }
 }
