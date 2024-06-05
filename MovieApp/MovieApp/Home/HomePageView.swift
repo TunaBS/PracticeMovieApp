@@ -30,7 +30,6 @@ struct HomePageView: View {
                             
                             Image(systemName: "rectangle")
                                 .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(.white)
                                 .padding()
                         }
                         

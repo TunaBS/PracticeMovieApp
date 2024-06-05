@@ -11,10 +11,12 @@ import SwiftUI
 struct MovieAppApp: App {
 //    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
 //    @StateObject var watchListViewModel: WatchListViewModel = WatchListViewModel()
+    @AppStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 TabViewBelow()
+                    .preferredColorScheme(isDarkModeEnabled ? .dark : .light)
             }
 //            .environmentObject(watchListViewModel)
         }

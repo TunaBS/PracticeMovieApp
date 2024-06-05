@@ -36,16 +36,13 @@ struct MovieBannerView: View {
                 if let img=phase.image {
                     img
                         .resizable()
-//                        .aspectRatio(contentMode: .fill)
                         .cornerRadius(20)
                         .frame(width: 400, height: 300, alignment: .center)
                 } else {
                     Image("background_dummy_img")
                         .resizable()
-//                        .aspectRatio(contentMode: .fill)
                         .cornerRadius(20)
                         .frame(width: 400, height: 300, alignment: .center)
-//                        .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             .overlay {
@@ -53,16 +50,14 @@ struct MovieBannerView: View {
                     HStack {
                         HStack{
                             Image(systemName: "star.fill")
-                                .foregroundColor(.white)
                                 .font(.footnote)
                             Text(String(format: "%.1f", movie.rating))
-                                .foregroundColor(.white)
                                 .font(.footnote)
                         }
                         .padding(5.0)
-                        .background(Color.white.opacity(0.25))
+                        .background(Color.white.opacity(0.35))
                         .overlay {
-                            RoundedRectangle(cornerRadius: 5).stroke(Color(.white), lineWidth: 1.0)
+                            RoundedRectangle(cornerRadius: 5).stroke(Color.white, lineWidth: 1.0)
                         }
                         Spacer()
                     
@@ -74,65 +69,51 @@ struct MovieBannerView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("\(movie.title)")
-                                .foregroundColor(.white)
                                 .font(.title3)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                                 .lineLimit(1)
                             
                             Text(genresString(from: movie.genres))
-                                .foregroundStyle(.white)
                                 .lineLimit(1)
                             
                             
                             HStack {
                                 if movie.mpaRating == "" {
                                     Text("N/A")
-                                        .foregroundStyle(.white)
                                         .font(.footnote)
                                         .padding(2.0)
                                         .overlay(RoundedRectangle(cornerRadius: 5)
-                                            .stroke(Color.white, lineWidth: 1))
+                                            .stroke(Color.primary, lineWidth: 1))
                                 } else {
                                     Text(movie.mpaRating)
-                                        .foregroundStyle(.white)
                                         .font(.footnote)
                                         .padding(2.0)
                                         .overlay(RoundedRectangle(cornerRadius: 5)
-                                            .stroke(Color.white, lineWidth: 1))
+                                            .stroke(Color.primary, lineWidth: 1))
                                 }
                                 Text(String(movie.year))
-                                    .foregroundStyle(.white)
                                     .font(.footnote)
                                     .padding(2.0)
                                     .overlay(RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.white, lineWidth: 1))
+                                        .stroke(Color.primary, lineWidth: 1))
                                 
                                 Text("\(movie.runtime/60)H \(movie.runtime%60)M")
-                                    .foregroundStyle(.white)
                                     .font(.footnote)
                                     .padding(2.0)
                                     .overlay(RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.white, lineWidth: 1))
+                                        .stroke(Color.primary, lineWidth: 1))
                             }
-//                            .padding(.bottom)
                         }
                         
                         Spacer()
                         if showWatchListButton {
                             WatchListButtonView(movie: movie)
                         }
-//                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-//                            Text("Add to Watchlist")
-////                                .font(.footnote)
-//                        })
-//                        .padding(5.0)
-//                        .foregroundColor(.white)
-//                        .background(.purple)
-//                        .cornerRadius(10)
                     }
                     .padding()
-                    .background(Color.white.opacity(0.25))
+                    .background(Color.white.opacity(0.35))
                     .overlay {
-                        RoundedRectangle(cornerRadius: 5).stroke(Color(.white))
+                        RoundedRectangle(cornerRadius: 5).stroke(Color.white)
                     }
                 }
             }

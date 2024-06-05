@@ -9,25 +9,22 @@ import SwiftUI
 
 struct FilterSearchView: View {
     
-//    let allSortByValues = SortBy.allCases
     let order: String = "desc"
-//    let movieName: String = "Saltwater"
     @Binding var movieName: String
     @State var searchviewModel = SearchViewModel()
     @Binding var allMovies: [Movie]
     @Binding var filteredMovies: [Movie]
     @State var isFilteredSearchViewPresented: Bool = false
-    @State private var selectedGenre: Genre? = nil
-//    @State private var genres: [Genre]? = nil
+    @State private var selectedGenres: Set<Genre> = []
     @State private var selectedSort: SortBy? = nil
     @State private var seletedOrder: OrderBy? = nil
-    var columnsCount: Int = 4
-    var rowsCount: Int = 3/*(Genre.allCases.count + columnsCount - 1) / columnsCount*/
     @State var holdSort: String = ""
     @State var holdOrder: String = ""
     @State var holdGenre: String = ""
-    
+    @Environment(\.dismiss) var dismiss
+    @AppStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
     var body: some View {
+        
         VStack(alignment: .leading){
             Text("Sort and Filter")
                 .font(.title)
@@ -40,8 +37,8 @@ struct FilterSearchView: View {
                 ForEach(SortBy.allCases, id: \.self){ sortBy in
                     Text(sortBy.rawValue)
                         .padding(5)
-                        .overlay(RoundedRectangle(cornerRadius: 15.0).stroke((self.selectedSort == sortBy ? Color.blue : Color.white)))
-                        .foregroundColor(self.selectedSort == sortBy ? Color.blue : Color.white)
+                        .overlay(RoundedRectangle(cornerRadius: 15.0).stroke((self.selectedSort == sortBy ? Color.blue : Color.primary)))
+                        .foregroundColor(self.selectedSort == sortBy ? Color.blue : Color.primary)
                         .onTapGesture {
                             self.selectedSort = sortBy
                         }
@@ -49,24 +46,13 @@ struct FilterSearchView: View {
             }
             Divider()
             
-            VStack{
-                Text("Genres")
-                    .font(.title3)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            }
+            Text("Genres")
+                .font(.title3)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             
-            
-            HStack {
-                ForEach(Genre.allCases, id: \.self){ genre in
-                    Text(genre.rawValue)
-                        .padding(5)
-                        .overlay(RoundedRectangle(cornerRadius: 15.0).stroke((self.selectedGenre == genre ? Color.blue : Color.white)))
-                        .foregroundColor(self.selectedGenre == genre ? Color.blue : Color.white)
-                        .onTapGesture {
-                            self.selectedGenre = genre
-                        }
-                }
-            }
+//            GenreSelectionView(selectedGenres: $selectedGenres)
+            ListPlacingView(selectedGenres: $selectedGenres, genres: Genre.allCases, columns: 4)
+      
             Divider()
             
             Text("Order By")
@@ -76,8 +62,8 @@ struct FilterSearchView: View {
                 ForEach(OrderBy.allCases, id: \.self){ orderBy in
                     Text(orderBy.rawValue)
                         .padding(5)
-                        .overlay(RoundedRectangle(cornerRadius: 15.0).stroke((self.seletedOrder == orderBy ? Color.blue : Color.white)))
-                        .foregroundColor(self.seletedOrder == orderBy ? Color.blue : Color.white)
+                        .overlay(RoundedRectangle(cornerRadius: 15.0).stroke((self.seletedOrder == orderBy ? Color.blue : Color.primary)))
+                        .foregroundColor(self.seletedOrder == orderBy ? Color.blue : Color.primary)
                         .onTapGesture {
                             self.seletedOrder = orderBy
                         }
@@ -94,21 +80,23 @@ struct FilterSearchView: View {
                         if let orderBy = seletedOrder?.rawValue {
                             holdOrder = orderBy
                         }
-                        if let genreBy = selectedGenre?.rawValue {
-                            holdGenre = genreBy
-                        }
-                        
                         if !movieName.isEmpty {
-                            await searchviewModel.getFilteredMovieData(movieName: movieName, sortBy: holdSort, orderBy: holdOrder, genre: holdGenre)
+                            await searchviewModel.getFilteredMovieData(movieName: movieName, sortBy: holdSort, orderBy: holdOrder)
                             filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
+                            print(filteredMovies.count)
+                            filteredMovies = searchviewModel.filterMoviesByGenres(genres: selectedGenres, movieArray: filteredMovies)
+                            print(filteredMovies.count)
                             
                         } else {
-                            await searchviewModel.getFilteredMovieData(movieName: "", sortBy: holdSort, orderBy: holdOrder, genre: holdGenre)
+                            await searchviewModel.getFilteredMovieData(movieName: "", sortBy: holdSort, orderBy: holdOrder)
                             filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
+                            print(filteredMovies.count)
+                            filteredMovies = searchviewModel.filterMoviesByGenres(genres: selectedGenres, movieArray: filteredMovies)
+                            print(filteredMovies.count)
                         }
                     }
                     
-                    
+                    dismiss.callAsFunction()
                 }, label: {
                     Text("Apply")
                         .padding()
@@ -122,8 +110,8 @@ struct FilterSearchView: View {
             
             
         }
-        .frame(width: 300, height: 500)
-        .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+        .padding()
+        .preferredColorScheme(isDarkModeEnabled ? .dark : .light)
     }
 }
 

@@ -39,7 +39,6 @@ struct CastView: View {
             }
             .padding()
             .frame(width: 150)
-            .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
         }
     }
 }

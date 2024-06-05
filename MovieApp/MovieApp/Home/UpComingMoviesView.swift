@@ -19,10 +19,9 @@ struct UpComingMoviesView: View {
                 Spacer()
                 NavigationLink(destination: MovieListView()) {
                     Text("See all")
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                 }
             }
-            .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
             
             ScrollView(.horizontal) {
                 HStack(spacing: 15) {

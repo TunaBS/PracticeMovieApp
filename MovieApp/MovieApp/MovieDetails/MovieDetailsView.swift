@@ -15,16 +15,17 @@ struct MovieDetailsView: View {
     @State var castNotFound = Movie.movieShowForTest.cast
     @EnvironmentObject var watchListViewModel: WatchListViewModel
     let boolCastNotFound = false
+//    @AppStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
     
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Rectangle()
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 101/255, green: 67/255, blue: 33/255), Color.black]),
-                        startPoint: .top, endPoint: .bottom)
-                    )
-                    .ignoresSafeArea()
+//                Rectangle()
+//                    .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 101/255, green: 67/255, blue: 33/255), Color.black]),
+//                        startPoint: .top, endPoint: .bottom)
+//                    )
+//                    .ignoresSafeArea()
                 
                 ScrollView(.vertical) {
                 
@@ -44,19 +45,21 @@ struct MovieDetailsView: View {
                                     .cornerRadius(20)
                             }
                         }
+                        .padding()
                         
                         HStack {
                             ForEach(movie.genres, id: \.self) { genre in
                                 Text(genre)
-                                    .font(.footnote)
                                 if genre != movie.genres.last {
                                     Circle().frame(width: 2, height: 2)
                                 }
                             }
                         }
+                        .padding()
                         Text(movie.title)
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .padding()
                         
                         HStack{
                             if movie.mpaRating != "" {
@@ -64,32 +67,34 @@ struct MovieDetailsView: View {
                                     .padding(3)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.white, lineWidth: 1)
+                                            .stroke(Color.primary, lineWidth: 1)
                                     )
                             } else {
                                 Text("N/A")
                                     .padding(3)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.white, lineWidth: 1)
+                                            .stroke(Color.primary, lineWidth: 1)
                                     )
                             }
                             Text(String(movie.year))
                                 .padding(3)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.white, lineWidth: 1)
+                                        .stroke(Color.primary, lineWidth: 1)
                                 )
                             Text("\(movie.runtime/60)H \(movie.runtime%60)M")
                                 .padding(3)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.white, lineWidth: 1)
+                                        .stroke(Color.primary, lineWidth: 1)
                                 )
                                 
                         }
+                        .padding()
                         Text(movie.descriptionFull)
                             .multilineTextAlignment(.leading)
+                            .padding()
                         
 //                        if showWatchListButton {
 //                            WatchListButtonView(movie: movie)
@@ -103,7 +108,9 @@ struct MovieDetailsView: View {
                         .frame(maxWidth: .infinity, maxHeight: 100)
                         .background(.purple)
                         .foregroundColor(.white)
-                        .cornerRadius(10)
+                        .cornerRadius(50)
+                        .padding()
+                        
                         RatingView(movieRate: movie.rating)
                             .padding()
                             .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -122,11 +129,11 @@ struct MovieDetailsView: View {
                                 }
                             }
                         }
+                        .padding()
                     }
-                    .padding()
+                    
                 }
             }
-            .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
             .onAppear {
                 Task {
                     await viewModel.getMovieData(movieId: idMovie)
@@ -135,6 +142,7 @@ struct MovieDetailsView: View {
             }
             .navigationTitle("Movie Details")
             .scrollIndicators(.hidden)
+//            .preferredColorScheme(isDarkModeEnabled ? .dark : .light)
         }
     }
 }

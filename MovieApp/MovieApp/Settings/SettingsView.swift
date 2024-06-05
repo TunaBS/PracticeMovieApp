@@ -8,8 +8,52 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State private var isToggled = false
+    @AppStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
     var body: some View {
-        Text("Settings")
+        VStack (alignment: .leading) {
+            HStack {
+                Text("Settings")
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                Spacer()
+            }
+            .padding()
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Language")
+                        .font(.title3)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding()
+                    Spacer()
+                    HStack {
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                            Text("Eng")
+                        })
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                            Text("Ban")
+                        })
+                    }
+                    .padding()
+                }
+                
+                
+                HStack {
+                    Text("Theme")
+                        .font(.title3)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding()
+                    
+                    Toggle(isOn: $isDarkModeEnabled) {
+                        
+                    }
+                    .padding()
+                }
+                Spacer()
+            }
+        }
+        .padding()
     }
 }
 

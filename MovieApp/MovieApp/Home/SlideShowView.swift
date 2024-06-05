@@ -52,7 +52,6 @@ struct SlideShowView: View {
             }
         }
         .frame(width: 400, height: 300)
-        .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
     }
 }
 

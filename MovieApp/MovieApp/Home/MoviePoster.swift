@@ -33,7 +33,6 @@ struct MoviePoster: View {
                 .lineLimit(1)
                 .truncationMode(/*@START_MENU_TOKEN@*/.tail/*@END_MENU_TOKEN@*/)
                 .frame(width: 200, alignment: .leading)
-                .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
             
             HStack{
                 Text(String(movie.year))
@@ -53,7 +52,6 @@ struct MoviePoster: View {
                     .font(.caption)
             }
             .font(.footnote)
-            .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
         }
     }
 }

@@ -38,10 +38,9 @@ struct RatingView: View {
                 }
                 
             }
+            .padding()
             Divider()
                 .frame(height: 100)
-                .foregroundColor(.white)
-                .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
 //                .fontWeight(5.0)
             VStack(alignment: .center){
                 Text("Your Rating")
@@ -67,6 +66,7 @@ struct RatingView: View {
                 }
                 
             }
+            .padding()
             
         }
     }

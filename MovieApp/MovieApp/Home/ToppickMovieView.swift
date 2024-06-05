@@ -15,15 +15,14 @@ struct ToppickMovieView: View {
             VStack{
                 HStack{
                     Text("Top Movie Picks")
-                        .font(.title2)
+                        .font(.title)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     Spacer()
                     NavigationLink(destination: MovieListView()) {
                         Text("See all")
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                     }
                 }
-                .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
                 
                 ScrollView(.horizontal) {
                     HStack(spacing: 15) {

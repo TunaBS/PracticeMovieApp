@@ -16,6 +16,7 @@ struct SearchView: View {
     @State var allMovies: [Movie] = []
     @State var filteredMovies: [Movie] = []
     @State var searchviewModel = SearchViewModel()
+    @State private var selectedGenres: Set<Genre> = []
     @State var isFilteredSearchViewPresented: Bool = false
     @State var searchItemChanged: DispatchWorkItem?
     var body: some View {
@@ -30,7 +31,6 @@ struct SearchView: View {
                     isFilteredSearchViewPresented.toggle()
                 }) {
                     Image(systemName: "slider.vertical.3")
-//                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                 }
             }
             .padding()
@@ -59,7 +59,8 @@ struct SearchView: View {
                                 print("Delayed operation: \(newString)")
                                 Task {
 //                                    await searchviewModel.getSearchedMovieData(movieName: newString)
-                                    await searchviewModel.getFilteredMovieData(movieName: newString, sortBy: "", orderBy: "", genre: "")
+//                                    await searchviewModel.getFilteredMovieData(movieName: newString, sortBy: "", orderBy: ""/*, genre: ""*/)
+                                    await searchviewModel.getFilteredMovieData(movieName: newString, sortBy: "", orderBy: "")
                                     filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
                                 }
                             } else {
@@ -84,7 +85,7 @@ struct SearchView: View {
                     }
             }
             .padding()
-            .background(RoundedRectangle(cornerRadius: 25).fill(Color(.gray)))
+            .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
             .padding()
             VStack {
                 ScrollView {
