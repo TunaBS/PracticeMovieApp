@@ -14,7 +14,7 @@ struct UpComingMoviesView: View {
         VStack{
             HStack{
                 Text("Upcoming Movies")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .font(.title)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 Spacer()
                 NavigationLink(destination: MovieListView()) {

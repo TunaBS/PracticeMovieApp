@@ -34,40 +34,50 @@ struct MovieCard: View {
                     VStack(alignment: .leading) {
                         Text(genresString(from: movie.genres))
                             .foregroundStyle(.white)
+                            .font(.footnote)
+                            .multilineTextAlignment(.leading)
                         
                         Text(movie.title)
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .font(.title3)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundStyle(.white)
+                            .multilineTextAlignment(.leading)
+                        
                         
                         HStack{
                             if movie.mpaRating == "" {
                                 Text("N/A")
                                     .foregroundStyle(.white)
+                                    .font(.footnote)
                                     .padding(2.0)
                                     .overlay(RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.white, lineWidth: 1))
                             } else {
                                 Text(movie.mpaRating)
                                     .foregroundStyle(.white)
+                                    .font(.footnote)
                                     .padding(2.0)
                                     .overlay(RoundedRectangle(cornerRadius: 5)
                                         .stroke(Color.white, lineWidth: 1))
                             }
                             Text(String(movie.year))
                                 .foregroundStyle(.white)
+                                .font(.footnote)
                                 .padding(2.0)
                                 .overlay(RoundedRectangle(cornerRadius: 5.0).stroke(Color.white, lineWidth: 1))
                             Text("\(movie.runtime/60)H \(movie.runtime%60)M")
                                 .foregroundStyle(.white)
+                                .font(.footnote)
                                 .padding(2.0)
                                 .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.white, lineWidth: 1))
                         }
                         HStack {
                             Image(systemName: "star.fill")
                                 .foregroundColor(.yellow)
+                                .font(.footnote)
                             Text(String(format: "%.1f", movie.rating))
                                 .foregroundStyle(.white)
+                                .font(.footnote)
                             Spacer()
                             
                             if showWatchListButton {

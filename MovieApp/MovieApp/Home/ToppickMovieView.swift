@@ -15,7 +15,7 @@ struct ToppickMovieView: View {
             VStack{
                 HStack{
                     Text("Top Movie Picks")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .font(.title2)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     Spacer()
                     NavigationLink(destination: MovieListView()) {

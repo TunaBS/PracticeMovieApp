@@ -16,7 +16,7 @@ struct SearchView: View {
     @State var allMovies: [Movie] = []
     @State var filteredMovies: [Movie] = []
     @State var searchviewModel = SearchViewModel()
-    /*private */
+    @State var isFilteredSearchViewPresented: Bool = false
     @State var searchItemChanged: DispatchWorkItem?
     var body: some View {
         VStack {
@@ -25,7 +25,13 @@ struct SearchView: View {
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.bold)
                 Spacer()
-                Image(systemName: "arrow.up.to.line.compact")
+                
+                Button(action: {
+                    isFilteredSearchViewPresented.toggle()
+                }) {
+                    Image(systemName: "slider.vertical.3")
+//                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                }
             }
             .padding()
             Spacer()
@@ -48,16 +54,27 @@ struct SearchView: View {
 //                        print(newString)
                         self.searchItemChanged?.cancel()
                         
-                        // Create a new DispatchWorkItem with a delay
                         let workItem = DispatchWorkItem {
-                            // Perform operation after a certain amount of time
-                            print("Delayed operation: \(newString)")
-                            Task {
-                                await searchviewModel.getMovieData(movieName: newString)
-                                filteredMovies = searchviewModel.movieDatabase?.data.movies ?? allMovies
-                                
-//                                movie = vijewModel.movieDetail?.data.movie ?? movie
+                            if !newString.isEmpty {
+                                print("Delayed operation: \(newString)")
+                                Task {
+//                                    await searchviewModel.getSearchedMovieData(movieName: newString)
+                                    await searchviewModel.getFilteredMovieData(movieName: newString, sortBy: "", orderBy: "")
+                                    filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
+                                }
+                            } else {
+                                filteredMovies=allMovies
                             }
+                            
+//                            if !newString.isEmpty {
+//                                print("Delayed operation: \(newString)")
+//                                Task {
+//                                    await searchviewModel.getMovieData(movieName: newString)
+//                                    searchviewModel.filteredMovies = searchviewModel.movieDatabase?.data.movies ?? searchviewModel.allMovies
+//                                }
+//                            } else {
+//                                searchviewModel.filteredMovies=searchviewModel.allMovies
+//                            }
                         }
                         // Schedule the DispatchWorkItem after a delay
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
@@ -78,48 +95,14 @@ struct SearchView: View {
                     }
                 }
             }
+            .sheet(isPresented: $isFilteredSearchViewPresented) {
+                FilterSearchView(movieName: $searchItem, allMovies: $allMovies, filteredMovies: $filteredMovies)
+            }
         }
     }
     
-    
-//    var body: some View {
-//        ScrollView {
-//            VStack (alignment: .leading) {
-//                HStack {
-//                    Text("Search")
-//                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-//                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-//                }
-////                Spacer()
-//                VStack {
-//                    ForEach(searchViewModel.isSearching ? searchViewModel.filteredMovies : searchViewModel.allMovies) { movie in
-//                        NavigationLink(destination: ContentView()) {
-//                                MovieCard(movie: movie, showWatchListButton: true)
-//                        }
-//                    }
-//                }
-//                
-//            }
-//            .padding()
-//            
-//        }
-//        .searchable(text: $searchViewModel.searchText, placement: .automatic, prompt: Text("Search Movies"))
-//        .onAppear {
-//            Task {
-//                await searchViewModel.getMovieData(movieName: searchViewModel.searchText)
-////                movie = viewModel.movieDetail?.data.movie ?? movie
-//            }
-//        }
-//        .navigationTitle("Search")
-////        .task {
-////            await searchViewModel.getMovieData(movieName: searchViewModel.searchText)
-////        }
-//    }
 }
 
-//#Preview {
-//    SearchView()
-//}
 
 
 struct SearchView_Previews: PreviewProvider {
@@ -127,6 +110,5 @@ struct SearchView_Previews: PreviewProvider {
         NavigationStack{
             SearchView()
         }
-//        .environmentObject(SearchViewModel())
     }
 }

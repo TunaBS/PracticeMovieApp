@@ -10,12 +10,14 @@ import SwiftUI
 struct WatchListView: View {
     @EnvironmentObject var watchListViewModel: WatchListViewModel
     var body: some View {
+        
         NavigationStack {
-            VStack{
+            VStack(alignment: .leading){
                 HStack {
                     Text("Watch List")
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .fontWeight(.bold)
+                        .padding()
                 }
                 
                 if watchListViewModel.movieArray.isEmpty {
@@ -29,14 +31,17 @@ struct WatchListView: View {
                         ForEach(watchListViewModel.movieArray, id: \.id) { movie in
                             NavigationLink(destination: MovieDetailsView(idMovie: movie.id)) {
                                 MovieCard(movie: movie, showWatchListButton: false)
+//                                    .*padding(.vertical, 20)*/
                             }
-                            .navigationBarHidden(true)
                         }
                         .onDelete(perform: watchListViewModel.deleteItems)
                         .onMove(perform: watchListViewModel.moveItems)
-                        .listRowSeparator(.hidden)
-                        .listStyle(.plain)
+                        .buttonStyle(PlainButtonStyle()) // Hide the ">" sign
+//                        .lineSpacing(20.0)
                     }
+                    .listRowSeparator(.hidden)
+                    .listStyle(.plain)
+                    
                 }
             }
             
