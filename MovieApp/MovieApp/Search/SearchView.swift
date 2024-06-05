@@ -59,7 +59,7 @@ struct SearchView: View {
                                 print("Delayed operation: \(newString)")
                                 Task {
 //                                    await searchviewModel.getSearchedMovieData(movieName: newString)
-                                    await searchviewModel.getFilteredMovieData(movieName: newString, sortBy: "", orderBy: "")
+                                    await searchviewModel.getFilteredMovieData(movieName: newString, sortBy: "", orderBy: "", genre: "")
                                     filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
                                 }
                             } else {

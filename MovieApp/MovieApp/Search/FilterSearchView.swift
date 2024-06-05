@@ -18,8 +18,14 @@ struct FilterSearchView: View {
     @Binding var filteredMovies: [Movie]
     @State var isFilteredSearchViewPresented: Bool = false
     @State private var selectedGenre: Genre? = nil
+//    @State private var genres: [Genre]? = nil
     @State private var selectedSort: SortBy? = nil
     @State private var seletedOrder: OrderBy? = nil
+    var columnsCount: Int = 4
+    var rowsCount: Int = 3/*(Genre.allCases.count + columnsCount - 1) / columnsCount*/
+    @State var holdSort: String = ""
+    @State var holdOrder: String = ""
+    @State var holdGenre: String = ""
     
     var body: some View {
         VStack(alignment: .leading){
@@ -43,9 +49,13 @@ struct FilterSearchView: View {
             }
             Divider()
             
-            Text("Genres")
-                .font(.title3)
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            VStack{
+                Text("Genres")
+                    .font(.title3)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            }
+            
+            
             HStack {
                 ForEach(Genre.allCases, id: \.self){ genre in
                     Text(genre.rawValue)
@@ -78,23 +88,23 @@ struct FilterSearchView: View {
                 Spacer()
                 Button(action: {
                     Task {
+                        if let sortBy = selectedSort?.rawValue {
+                            holdSort = sortBy
+                        }
+                        if let orderBy = seletedOrder?.rawValue {
+                            holdOrder = orderBy
+                        }
+                        if let genreBy = selectedGenre?.rawValue {
+                            holdGenre = genreBy
+                        }
                         
                         if !movieName.isEmpty {
-                            if let sortBy = selectedSort?.rawValue, let orderBy = seletedOrder?.rawValue {
-                                await searchviewModel.getFilteredMovieData(movieName: movieName, sortBy: sortBy, orderBy: orderBy)
-                                filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
-                            } else {
-                                await searchviewModel.getFilteredMovieData(movieName: movieName, sortBy: "", orderBy: "desc") // Default value or handle no selection case
-                                filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
-                            }
+                            await searchviewModel.getFilteredMovieData(movieName: movieName, sortBy: holdSort, orderBy: holdOrder, genre: holdGenre)
+                            filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
+                            
                         } else {
-                            if let sortBy = selectedSort?.rawValue, let orderBy = seletedOrder?.rawValue {
-                                await searchviewModel.getFilteredMovieData(movieName: "", sortBy: sortBy, orderBy: orderBy)
-                                filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
-                            } else {
-                                await searchviewModel.getFilteredMovieData(movieName: "", sortBy: "", orderBy: "desc") // Default value or handle no selection case
-                                filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
-                            }
+                            await searchviewModel.getFilteredMovieData(movieName: "", sortBy: holdSort, orderBy: holdOrder, genre: holdGenre)
+                            filteredMovies = searchviewModel.filteredMovieDatabase?.data.movies ?? allMovies
                         }
                     }
                     

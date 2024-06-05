@@ -86,8 +86,8 @@ class NetworkCall {
         }
     }
     
-    func getFilteredSearchList(movieName: String, sortCriteria: String, orderBy: String) async throws -> MovieData {
-        let endpoint = "https://yts.mx/api/v2/list_movies.json?query_term=\(movieName)&sort_by=\(sortCriteria)&order_by=\(orderBy)"
+    func getFilteredSearchList(movieName: String, sortCriteria: String, orderBy: String, genre: String) async throws -> MovieData {
+        let endpoint = "https://yts.mx/api/v2/list_movies.json?query_term=\(movieName)&sort_by=\(sortCriteria)&order_by=\(orderBy)&genre=\(genre)"
         
         guard let url = URL(string: endpoint) else {
             throw ErrorHand.invalidURL

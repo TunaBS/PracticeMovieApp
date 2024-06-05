@@ -39,9 +39,9 @@ class SearchViewModel/*: ObservableObject */{
 //        isLoadingData = false
 //    }
     
-    func getFilteredMovieData(movieName: String, sortBy: String, orderBy: String) async {
+    func getFilteredMovieData(movieName: String, sortBy: String, orderBy: String, genre: String) async {
         do {
-            filteredMovieDatabase = try await networkCall.getFilteredSearchList(movieName: movieName, sortCriteria: sortBy, orderBy: orderBy)
+            filteredMovieDatabase = try await networkCall.getFilteredSearchList(movieName: movieName, sortCriteria: sortBy, orderBy: orderBy, genre: genre)
         } catch ErrorHand.invalidURL {
             print("invalid url")
         } catch ErrorHand.invalidResponse {
