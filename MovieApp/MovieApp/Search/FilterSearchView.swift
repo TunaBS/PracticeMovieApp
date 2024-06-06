@@ -23,14 +23,16 @@ struct FilterSearchView: View {
     @State var holdGenre: String = ""
     @Environment(\.dismiss) var dismiss
     @AppStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
+    @ObservedObject var languageManager = LanguageManager.shared
+    
     var body: some View {
         
         VStack(alignment: .leading){
-            Text("Sort and Filter")
+            Text(languageManager.localizedString(forKey: "Sort and Filter"))
                 .font(.title)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             Divider()
-            Text("Sort by")
+            Text(languageManager.localizedString(forKey: "Sort by"))
                 .font(.title3)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             HStack {
@@ -46,7 +48,7 @@ struct FilterSearchView: View {
             }
             Divider()
             
-            Text("Genres")
+            Text(languageManager.localizedString(forKey: "Genres"))
                 .font(.title3)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             
@@ -55,7 +57,7 @@ struct FilterSearchView: View {
       
             Divider()
             
-            Text("Order By")
+            Text(languageManager.localizedString(forKey: "Order By"))
                 .font(.title3)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             HStack {
@@ -98,7 +100,7 @@ struct FilterSearchView: View {
                     
                     dismiss.callAsFunction()
                 }, label: {
-                    Text("Apply")
+                    Text(languageManager.localizedString(forKey: "Apply"))
                         .padding()
                         .foregroundColor(.white)
                         .background(Color(.purple))

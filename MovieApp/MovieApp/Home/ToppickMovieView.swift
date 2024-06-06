@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct ToppickMovieView: View {
+    @ObservedObject var languageManager = LanguageManager.shared
+    
     
     let movieList: [Movie]
     var body: some View {
         NavigationStack {
             VStack{
                 HStack{
-                    Text("Top Movie Picks")
+                    Text(languageManager.localizedString(forKey: "Top Movie Picks"))
                         .font(.title)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     Spacer()
                     NavigationLink(destination: MovieListView()) {
-                        Text("See all")
+                        Text(languageManager.localizedString(forKey: "See all"))
                             .foregroundColor(.primary)
                     }
                 }

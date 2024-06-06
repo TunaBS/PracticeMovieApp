@@ -21,6 +21,8 @@ struct MovieDetailsView: View {
     let imageWidth = 400
     let shimmerTextWidth = 40
     let shimmerTextHeight = 10
+    @ObservedObject var languageManager = LanguageManager.shared
+    
     
     var body: some View {
         NavigationStack {
@@ -76,7 +78,7 @@ struct MovieDetailsView: View {
                             Text(movie.title)
                                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                .shimmer(.init(tint: .black.opacity(0.5), highlight: .white,blur: 5))
+//                                .shimmer(.init(tint:/* .black.opacity(0.5), highlight: .white,blur: 5))*/
                                 .padding()
                             
                             HStack{
@@ -157,7 +159,7 @@ struct MovieDetailsView: View {
                     movie = viewModel.movieDetail?.data.movie ?? movie
                 }
             }
-            .navigationTitle("Movie Details")
+            .navigationTitle(languageManager.localizedString(forKey: "Movie Details"))
             .navigationBarTitleDisplayMode(.inline)
             .scrollIndicators(.hidden)
         }

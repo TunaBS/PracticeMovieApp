@@ -11,12 +11,14 @@ struct WatchListButtonView: View {
     let movie: Movie
 //    @Binding var isButtonPressed: Bool
     @EnvironmentObject var watchListViewModel: WatchListViewModel
+    @ObservedObject var languageManager = LanguageManager.shared
     
     var body: some View {
         Button(action: {
             watchListViewModel.addItems(movie: movie)
         }, label: {
-            Text("Add to Watchlist")
+//            Text("Add to Watchlist")
+            Text(languageManager.localizedString(forKey: "Add to WatchList"))
                 .padding(10)
                 .foregroundColor(.white)
                 .background(.purple)

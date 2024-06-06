@@ -11,6 +11,7 @@ struct HomePageView: View {
 //    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel() //changed this
     @State var viewModel = NetworkLoaderViewModel()
     @State private var isLoaded = false
+    @ObservedObject var languageManager = LanguageManager.shared
     
     var body: some View {
         NavigationStack {
@@ -19,9 +20,11 @@ struct HomePageView: View {
                         
                         HStack {
                             VStack(alignment: .leading){
-                                Text("Welcome Back,")
+//                                Text("Welcome Back,")
+                                Text(languageManager.localizedString(forKey: "Welcome Back"))
                                     .font(.title2)
-                                Text("Dianne Russell.")
+//                                Text("Dianne Russell.")
+                                Text(languageManager.localizedString(forKey: "User name"))
                                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                                     .fontWeight(.bold)
                             }

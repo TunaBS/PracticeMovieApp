@@ -9,12 +9,14 @@ import SwiftUI
 
 struct WatchListView: View {
     @EnvironmentObject var watchListViewModel: WatchListViewModel
+    @ObservedObject var languageManager = LanguageManager.shared
+    
     var body: some View {
         
         NavigationStack {
             VStack(alignment: .leading){
                 HStack {
-                    Text("Watch List")
+                    Text(languageManager.localizedString(forKey: "Watch List"))
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .fontWeight(.bold)
                         .padding()

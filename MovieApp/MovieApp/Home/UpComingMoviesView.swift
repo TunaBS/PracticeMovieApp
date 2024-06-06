@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct UpComingMoviesView: View {
+    @ObservedObject var languageManager = LanguageManager.shared
+    
     
     let movieList: [Movie]
     var body: some View {
         VStack{
             HStack{
-                Text("Upcoming Movies")
+                Text(languageManager.localizedString(forKey: "Upcoming Movies"))
                     .font(.title)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 Spacer()
                 NavigationLink(destination: MovieListView()) {
-                    Text("See all")
+                    Text(languageManager.localizedString(forKey: "See all"))
                         .foregroundColor(.primary)
                 }
             }

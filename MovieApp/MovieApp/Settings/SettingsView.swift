@@ -10,10 +10,14 @@ import SwiftUI
 struct SettingsView: View {
     @State private var isToggled = false
     @AppStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
+    @ObservedObject var languageManager = LanguageManager.shared
+        
+    
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
-                Text("Settings")
+//                Text("Settings")
+                Text(languageManager.localizedString(forKey: "Settings"))
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 Spacer()
@@ -22,25 +26,37 @@ struct SettingsView: View {
             
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Language")
+//                    Text("Language")
+                    Text(languageManager.localizedString(forKey: "Language"))
                         .font(.title3)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding()
                     Spacer()
                     HStack {
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                            Text("Eng")
-                        })
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                            Text("Ban")
-                        })
+//                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+//                            Text("Eng")
+//                        })
+//                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+//                            Text("Ban")
+//                        })
+                        Button(action: {
+                            languageManager.setLanguage(.english)
+                        }) {
+                            Text(languageManager.localizedString(forKey: "Eng"))
+                        }
+                        Button(action: {
+                            languageManager.setLanguage(.bengali)
+                        }) {
+                            Text(languageManager.localizedString(forKey: "Ban"))
+                        }
                     }
                     .padding()
                 }
                 
                 
                 HStack {
-                    Text("Theme")
+//                    Text("Theme")
+                    Text(languageManager.localizedString(forKey: "Dark Theme"))
                         .font(.title3)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding()

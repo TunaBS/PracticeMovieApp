@@ -37,6 +37,7 @@
 		4B67CF8C2C1084BE00BD793A /* ListPlacingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B67CF8B2C1084BE00BD793A /* ListPlacingView.swift */; };
 		4B68638E2C11CB2F00522AE7 /* ShimmerEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B68638D2C11CB2F00522AE7 /* ShimmerEffect.swift */; };
 		4B6863962C11DD0C00522AE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B6863952C11DD0C00522AE7 /* Localizable.strings */; };
+		4B6863992C11E03300522AE7 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6863982C11E03300522AE7 /* LanguageManager.swift */; };
 		4B6E523C2C0D804D00D7DB21 /* WatchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523B2C0D804D00D7DB21 /* WatchListViewModel.swift */; };
 		4B6E523E2C0D878C00D7DB21 /* WatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523D2C0D878C00D7DB21 /* WatchListView.swift */; };
 		4B6E52402C0D87E900D7DB21 /* WatchListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523F2C0D87E900D7DB21 /* WatchListButtonView.swift */; };
@@ -82,6 +83,7 @@
 		4B68638D2C11CB2F00522AE7 /* ShimmerEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffect.swift; sourceTree = "<group>"; };
 		4B6863942C11DD0C00522AE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B6863972C11DD9D00522AE7 /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = bn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B6863982C11E03300522AE7 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		4B6E523B2C0D804D00D7DB21 /* WatchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewModel.swift; sourceTree = "<group>"; };
 		4B6E523D2C0D878C00D7DB21 /* WatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListView.swift; sourceTree = "<group>"; };
 		4B6E523F2C0D87E900D7DB21 /* WatchListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListButtonView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				4B6863952C11DD0C00522AE7 /* Localizable.strings */,
+				4B6863982C11E03300522AE7 /* LanguageManager.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				4B48F6122C0748BC002A3EAD /* Cast.swift in Sources */,
 				4B48F5FF2C06DBCF002A3EAD /* MoviePoster.swift in Sources */,
 				4B5066842C08947C0039F131 /* SearchView.swift in Sources */,
+				4B6863992C11E03300522AE7 /* LanguageManager.swift in Sources */,
 				4B48F60E2C0705C2002A3EAD /* RatingView.swift in Sources */,
 				4B48F5F52C06D815002A3EAD /* Movie.swift in Sources */,
 				4B4738332C0F19FC00A65DC3 /* FilterSearchView.swift in Sources */,

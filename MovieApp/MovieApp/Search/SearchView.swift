@@ -19,10 +19,12 @@ struct SearchView: View {
     @State private var selectedGenres: Set<Genre> = []
     @State var isFilteredSearchViewPresented: Bool = false
     @State var searchItemChanged: DispatchWorkItem?
+    @ObservedObject var languageManager = LanguageManager.shared
+    
     var body: some View {
         VStack {
             HStack (alignment: .top){
-                Text("Search")
+                Text(languageManager.localizedString(forKey: "Search"))
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.bold)
                 Spacer()
