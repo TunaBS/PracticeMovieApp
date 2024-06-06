@@ -7,13 +7,14 @@
 
 import Foundation
 
-class MovieDetailViewModel {
+class MovieDetailViewModel: ObservableObject {
 //    var movieId: Int
     let networkCall: NetworkCall
     
     var movieDetail: MovieDetail?
     
-    private var isLoadingData = true
+//    /*private*/ var isLoadingData = true
+    @Published var isLoadingData = true
     
     init(networkCall: NetworkCall = NetworkCall(), isLoadingData: Bool = true) {
         self.networkCall = networkCall

@@ -24,6 +24,7 @@ struct MoviePoster: View {
                     Image("background_dummy_img")
                         .resizable()
                         .scaledToFit()
+                        .shimmer(.init(tint: .black.opacity(0.3), highlight: .white,blur: 5))
                 }
             }
             .frame(height: 350)

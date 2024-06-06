@@ -57,6 +57,17 @@ struct SettingsView: View {
     }
 }
 
-#Preview {
-    SettingsView()
+//#Preview {
+//    SettingsView()
+//}
+
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            SettingsView()
+                .environment(\.locale, Locale.init(identifier: "en"))
+            SettingsView()
+                .environment(\.locale, Locale.init(identifier: "bn"))
+        }
+    }
 }

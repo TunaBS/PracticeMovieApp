@@ -43,6 +43,7 @@ struct MovieBannerView: View {
                         .resizable()
                         .cornerRadius(20)
                         .frame(width: 400, height: 300, alignment: .center)
+                        .shimmer(.init(tint: .black.opacity(0.3), highlight: .white,blur: 5))
                 }
             }
             .overlay {
