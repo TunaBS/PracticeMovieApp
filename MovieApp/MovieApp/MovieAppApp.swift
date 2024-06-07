@@ -22,7 +22,8 @@ struct MovieAppApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                TabViewBelow()
+//                TabViewBelow()
+                LaunchScreenView()
                     .preferredColorScheme(isDarkModeEnabled ? .dark : .light)
             }
 //            .environmentObject(watchListViewModel)

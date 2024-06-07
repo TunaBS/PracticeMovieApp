@@ -44,6 +44,9 @@
 		4B69CA052C12D66500FBA74E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4B69CA042C12D66500FBA74E /* FirebaseAuth */; };
 		4B69CA082C12DA6200FBA74E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CA072C12DA6200FBA74E /* SignInView.swift */; };
 		4B69CA0A2C12E74A00FBA74E /* RegistrationNewAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CA092C12E74A00FBA74E /* RegistrationNewAccountView.swift */; };
+		4B69CA0C2C12FF3F00FBA74E /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CA0B2C12FF3F00FBA74E /* LaunchScreenView.swift */; };
+		4B69CA0E2C12FF8B00FBA74E /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CA0D2C12FF8B00FBA74E /* SignInEmailViewModel.swift */; };
+		4B69CA102C13001100FBA74E /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CA0F2C13001100FBA74E /* AuthenticationManager.swift */; };
 		4B6E523C2C0D804D00D7DB21 /* WatchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523B2C0D804D00D7DB21 /* WatchListViewModel.swift */; };
 		4B6E523E2C0D878C00D7DB21 /* WatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523D2C0D878C00D7DB21 /* WatchListView.swift */; };
 		4B6E52402C0D87E900D7DB21 /* WatchListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523F2C0D87E900D7DB21 /* WatchListButtonView.swift */; };
@@ -93,6 +96,9 @@
 		4B69C9FC2C12C95800FBA74E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4B69CA072C12DA6200FBA74E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		4B69CA092C12E74A00FBA74E /* RegistrationNewAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNewAccountView.swift; sourceTree = "<group>"; };
+		4B69CA0B2C12FF3F00FBA74E /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		4B69CA0D2C12FF8B00FBA74E /* SignInEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailViewModel.swift; sourceTree = "<group>"; };
+		4B69CA0F2C13001100FBA74E /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		4B6E523B2C0D804D00D7DB21 /* WatchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewModel.swift; sourceTree = "<group>"; };
 		4B6E523D2C0D878C00D7DB21 /* WatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListView.swift; sourceTree = "<group>"; };
 		4B6E523F2C0D87E900D7DB21 /* WatchListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListButtonView.swift; sourceTree = "<group>"; };
@@ -226,6 +232,9 @@
 			children = (
 				4B69CA072C12DA6200FBA74E /* SignInView.swift */,
 				4B69CA092C12E74A00FBA74E /* RegistrationNewAccountView.swift */,
+				4B69CA0B2C12FF3F00FBA74E /* LaunchScreenView.swift */,
+				4B69CA0D2C12FF8B00FBA74E /* SignInEmailViewModel.swift */,
+				4B69CA0F2C13001100FBA74E /* AuthenticationManager.swift */,
 			);
 			path = UserAuthentication;
 			sourceTree = "<group>";
@@ -386,6 +395,7 @@
 				4B48F6072C06E3F4002A3EAD /* NetworkLoaderViewModel.swift in Sources */,
 				4B47383C2C0F224000A65DC3 /* OrderBy.swift in Sources */,
 				4B48F6102C07472C002A3EAD /* UpComingMoviesView.swift in Sources */,
+				4B69CA0E2C12FF8B00FBA74E /* SignInEmailViewModel.swift in Sources */,
 				4B48F5F82C06D83B002A3EAD /* MovieData.swift in Sources */,
 				4B47383A2C0F219E00A65DC3 /* Genre.swift in Sources */,
 				4B4738362C0F1E5900A65DC3 /* ErrorHandler.swift in Sources */,
@@ -394,6 +404,7 @@
 				4B5066782C0844FF0039F131 /* MovieListView.swift in Sources */,
 				4B48F6092C06EDA3002A3EAD /* MovieDetailsView.swift in Sources */,
 				4BE773C42BF7596C002FC945 /* ContentView.swift in Sources */,
+				4B69CA102C13001100FBA74E /* AuthenticationManager.swift in Sources */,
 				4BE773C22BF7596C002FC945 /* MovieAppApp.swift in Sources */,
 				4BBCB3792C099B0D00AC8945 /* MovieListViewModel.swift in Sources */,
 				4B69CA082C12DA6200FBA74E /* SignInView.swift in Sources */,
@@ -405,6 +416,7 @@
 				4B48F5FD2C06DBA4002A3EAD /* MovieDetail.swift in Sources */,
 				4B5066872C08995C0039F131 /* SettingsView.swift in Sources */,
 				4B6E52402C0D87E900D7DB21 /* WatchListButtonView.swift in Sources */,
+				4B69CA0C2C12FF3F00FBA74E /* LaunchScreenView.swift in Sources */,
 				4B50667A2C084A750039F131 /* MovieCard.swift in Sources */,
 				4B6E523C2C0D804D00D7DB21 /* WatchListViewModel.swift in Sources */,
 				4B48F6122C0748BC002A3EAD /* Cast.swift in Sources */,
