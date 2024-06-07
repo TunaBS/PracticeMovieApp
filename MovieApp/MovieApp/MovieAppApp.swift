@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct MovieAppApp: App {
 //    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
 //    @StateObject var watchListViewModel: WatchListViewModel = WatchListViewModel()
     @AppStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
+    
+    init() {
+        FirebaseApp.configure()
+        print("Firebase configured")
+    }
+    
     var body: some Scene {
         WindowGroup {
             NavigationView {

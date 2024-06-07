@@ -4,7 +4,7 @@
 "Eng" = "English";
 "Ban" = "Bangla";
 "Add to Watchlist" = "Add to Watchlist";
-"Welcome Back" = "Welcome Back";
+"Welcome Back" = "Welcome Back!";
 "User name" = "Fairuz Ahmed";
 "Add to WatchList" = "Add to WatchList";
 "Top Movie Picks" = "Top Movie Picks";
@@ -18,3 +18,14 @@
 "Apply" = "Apply";
 "Watch List" = "Watch List";
 "Movie Details" = "Movie Details";
+"Please sign in to your account" = "Please sign in to your account";
+"Email" = "Email";
+"Password" = "Password";
+"Forgot Password" = "Forgot Password";
+"Don't have an account?" = "Don't have an account?";
+"Sign In" = "Sign In";
+"Don't have an account?" = "Don't have an account?";
+"Sign Up" = "Sign Up";
+"Welcome" = "Welcome";
+"Create new account" = "Create new account";
+"Confirm Password" = "Confirm Password";
