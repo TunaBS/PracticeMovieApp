@@ -29,4 +29,11 @@ final class AuthenticationManager {
         let result = AuthDataResultModel(user: authDataResult.user)
         return result
     }
+    
+    func signInUser(email: String, password: String) async throws -> AuthDataResultModel {
+        let authSignInData = try await Auth.auth().signIn(withEmail: email, password: password)
+        let resultOfSignInData = AuthDataResultModel(user: authSignInData.user)
+        return resultOfSignInData
+    }
+    
 }

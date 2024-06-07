@@ -13,7 +13,8 @@ final class SignInEmailViewModel: ObservableObject {
 //    @Published var password = ""
 //    
 //
-    var successfulAccountCreation = false
+    @Published var successfulAccountCreation = false
+    @Published var successfulLogin = false
     
     func signUp(email: String, password: String) -> Bool {
         print("this is the email: \(email)")
@@ -29,12 +30,38 @@ final class SignInEmailViewModel: ObservableObject {
                 print("Successfully Created New User")
                 print(returnedUserData)
                 successfulAccountCreation = true
+                
             } catch {
                 print("Error: \(error)")
             }
-            return successfulAccountCreation
+        }
+        return successfulAccountCreation
+    }
+    
+    func signIn(email: String, password: String) -> Bool {
+        print("email: \(email)")
+        print("password: \(password)")
+        
+        guard !email.isEmpty, !password.isEmpty else {
+            print("enter email password in login page")
+            return successfulLogin
         }
         
-        return successfulAccountCreation
+        Task {
+            do {
+                let returnSignedInUserData = try await AuthenticationManager.shared.signInUser(email: email, password: password)
+                print("successfully sign in")
+                print(returnSignedInUserData)
+                successfulLogin = true
+                print("successful login value in View model")
+                print(successfulLogin)
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+        print("successful login value in View model before the return statement")
+        print(successfulLogin)
+        return successfulLogin
+        
     }
 }

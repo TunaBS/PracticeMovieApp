@@ -47,6 +47,8 @@
 		4B69CA0C2C12FF3F00FBA74E /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CA0B2C12FF3F00FBA74E /* LaunchScreenView.swift */; };
 		4B69CA0E2C12FF8B00FBA74E /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CA0D2C12FF8B00FBA74E /* SignInEmailViewModel.swift */; };
 		4B69CA102C13001100FBA74E /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B69CA0F2C13001100FBA74E /* AuthenticationManager.swift */; };
+		4B69CA142C132F1800FBA74E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4B69CA132C132F1800FBA74E /* FirebaseFirestore */; };
+		4B69CA162C132F2100FBA74E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4B69CA152C132F2100FBA74E /* FirebaseFirestoreSwift */; };
 		4B6E523C2C0D804D00D7DB21 /* WatchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523B2C0D804D00D7DB21 /* WatchListViewModel.swift */; };
 		4B6E523E2C0D878C00D7DB21 /* WatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523D2C0D878C00D7DB21 /* WatchListView.swift */; };
 		4B6E52402C0D87E900D7DB21 /* WatchListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523F2C0D87E900D7DB21 /* WatchListButtonView.swift */; };
@@ -118,7 +120,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B69CA162C132F2100FBA74E /* FirebaseFirestoreSwift in Frameworks */,
 				4B69CA022C12CF0000FBA74E /* FirebaseAnalyticsSwift in Frameworks */,
+				4B69CA142C132F1800FBA74E /* FirebaseFirestore in Frameworks */,
 				4B69CA052C12D66500FBA74E /* FirebaseAuth in Frameworks */,
 				4B69CA002C12CF0000FBA74E /* FirebaseAnalytics in Frameworks */,
 			);
@@ -330,6 +334,8 @@
 				4B69C9FF2C12CF0000FBA74E /* FirebaseAnalytics */,
 				4B69CA012C12CF0000FBA74E /* FirebaseAnalyticsSwift */,
 				4B69CA042C12D66500FBA74E /* FirebaseAuth */,
+				4B69CA132C132F1800FBA74E /* FirebaseFirestore */,
+				4B69CA152C132F2100FBA74E /* FirebaseFirestoreSwift */,
 			);
 			productName = MovieApp;
 			productReference = 4BE773BE2BF7596C002FC945 /* MovieApp.app */;
@@ -679,6 +685,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4B69C9FE2C12CB8A00FBA74E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		4B69CA132C132F1800FBA74E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B69C9FE2C12CB8A00FBA74E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		4B69CA152C132F2100FBA74E /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B69C9FE2C12CB8A00FBA74E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

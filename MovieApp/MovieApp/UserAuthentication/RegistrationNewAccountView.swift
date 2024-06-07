@@ -98,7 +98,7 @@ struct RegistrationNewAccountView: View {
                         .background(RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/).fill(Color.purple))
                         .padding()
                         .alert(isPresented: $showAlert) {
-                            Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                            Alert(title: Text("Error Signing Up"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                         }
                         
                     }
