@@ -80,10 +80,10 @@ struct RegistrationNewAccountView: View {
                         
                         Button(action: {
                             if passwordCorrect{
-                                if signUpViewModel.signUp(email: email, password: password) {
-                                    successfulAccountCreation = true
-                                } else {
-                                    alertMessage = "Sign Up isn't successful, please try again"
+                                signUpViewModel.signUp(email: email, password: password) { success in
+                                    if !success {
+                                        alertMessage = "Sign Up isn't successful, please try again"
+                                    } else { successfulAccountCreation = true }
                                 }
                             } else {
                                 alertMessage = "Your password didn't match"

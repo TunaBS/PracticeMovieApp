@@ -53,6 +53,8 @@
 		4B6E523E2C0D878C00D7DB21 /* WatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523D2C0D878C00D7DB21 /* WatchListView.swift */; };
 		4B6E52402C0D87E900D7DB21 /* WatchListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E523F2C0D87E900D7DB21 /* WatchListButtonView.swift */; };
 		4B6E52462C0DC74C00D7DB21 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E52452C0DC74C00D7DB21 /* SearchViewModel.swift */; };
+		4B750B092C14A1240000D68F /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B750B082C14A1240000D68F /* NavigationState.swift */; };
+		4B750B0B2C14A3290000D68F /* CurvedBackgroundShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B750B0A2C14A3290000D68F /* CurvedBackgroundShape.swift */; };
 		4BBCB3792C099B0D00AC8945 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCB3782C099B0D00AC8945 /* MovieListViewModel.swift */; };
 		4BBCB37B2C09A73400AC8945 /* MovieBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCB37A2C09A73400AC8945 /* MovieBannerView.swift */; };
 		4BBCB37D2C09C6D800AC8945 /* SlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCB37C2C09C6D800AC8945 /* SlideShowView.swift */; };
@@ -105,6 +107,8 @@
 		4B6E523D2C0D878C00D7DB21 /* WatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListView.swift; sourceTree = "<group>"; };
 		4B6E523F2C0D87E900D7DB21 /* WatchListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListButtonView.swift; sourceTree = "<group>"; };
 		4B6E52452C0DC74C00D7DB21 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		4B750B082C14A1240000D68F /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
+		4B750B0A2C14A3290000D68F /* CurvedBackgroundShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedBackgroundShape.swift; sourceTree = "<group>"; };
 		4BBCB3782C099B0D00AC8945 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		4BBCB37A2C09A73400AC8945 /* MovieBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBannerView.swift; sourceTree = "<group>"; };
 		4BBCB37C2C09C6D800AC8945 /* SlideShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowView.swift; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 				4B69CA0B2C12FF3F00FBA74E /* LaunchScreenView.swift */,
 				4B69CA0D2C12FF8B00FBA74E /* SignInEmailViewModel.swift */,
 				4B69CA0F2C13001100FBA74E /* AuthenticationManager.swift */,
+				4B750B082C14A1240000D68F /* NavigationState.swift */,
+				4B750B0A2C14A3290000D68F /* CurvedBackgroundShape.swift */,
 			);
 			path = UserAuthentication;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				4B48F6102C07472C002A3EAD /* UpComingMoviesView.swift in Sources */,
 				4B69CA0E2C12FF8B00FBA74E /* SignInEmailViewModel.swift in Sources */,
 				4B48F5F82C06D83B002A3EAD /* MovieData.swift in Sources */,
+				4B750B0B2C14A3290000D68F /* CurvedBackgroundShape.swift in Sources */,
 				4B47383A2C0F219E00A65DC3 /* Genre.swift in Sources */,
 				4B4738362C0F1E5900A65DC3 /* ErrorHandler.swift in Sources */,
 				4BBCB37D2C09C6D800AC8945 /* SlideShowView.swift in Sources */,
@@ -416,6 +423,7 @@
 				4B69CA082C12DA6200FBA74E /* SignInView.swift in Sources */,
 				4B4738382C0F1E8A00A65DC3 /* SortBy.swift in Sources */,
 				4BBCB37B2C09A73400AC8945 /* MovieBannerView.swift in Sources */,
+				4B750B092C14A1240000D68F /* NavigationState.swift in Sources */,
 				4B6E523E2C0D878C00D7DB21 /* WatchListView.swift in Sources */,
 				4B67CF882C103D6600BD793A /* ConstantThings.swift in Sources */,
 				4B4738312C0EDF2500A65DC3 /* UIApplicationSwift.swift in Sources */,

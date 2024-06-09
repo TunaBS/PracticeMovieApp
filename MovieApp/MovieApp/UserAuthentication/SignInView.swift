@@ -66,18 +66,15 @@ struct SignInView: View {
                         Spacer()
                         
                         Button(action: {
-                            signInViewModel.signIn(email: email, password: password)
-//                            print("successful login value in Login View")
-//                            print(signInViewModel.signIn(email: email, password: password))
-//                            if signInViewModel.signIn(email: email, password: password){
-//                                successfulLogIn = true
-//                                print("Sign in hocche")
-//                                
-//                            } /*else {*/
-//                                alertMessage = "Sorry you couldn't sign in, please give correct information again"
-//                                showAlert = true
-//                                print("enters here not signed in that means")
-//                            }
+                            signInViewModel.signIn(email: email, password: password) { success in
+                                if success {
+                                    print("login successful")
+                                } else {
+                                    print("not logged in")
+                                    alertMessage = "Sorry you couldn't sign in, please give correct information again"
+                                    showAlert = true
+                                }
+                            }
                         }, label: {
                             Text(languageManager.localizedString(forKey: "Sign In"))
                                 .foregroundColor(.white)

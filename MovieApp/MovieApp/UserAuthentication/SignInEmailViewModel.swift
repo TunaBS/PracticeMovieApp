@@ -16,12 +16,13 @@ final class SignInEmailViewModel: ObservableObject {
     @Published var successfulAccountCreation = false
     @Published var successfulLogin = false
     
-    func signUp(email: String, password: String) -> Bool {
+    func signUp(email: String, password: String, completion: @escaping (Bool) -> Void) {
         print("this is the email: \(email)")
         print("this is the password \(password)")
         guard !email.isEmpty, !password.isEmpty else {
             print("Please enter email and password")
-            return successfulAccountCreation
+            completion(false)
+            return
         }
         
         Task {
@@ -30,21 +31,22 @@ final class SignInEmailViewModel: ObservableObject {
                 print("Successfully Created New User")
                 print(returnedUserData)
                 successfulAccountCreation = true
-                
+                completion(true)
             } catch {
                 print("Error: \(error)")
+                completion(false)
             }
         }
-        return successfulAccountCreation
     }
     
-    func signIn(email: String, password: String) -> Bool {
+    func signIn(email: String, password: String, completion: @escaping (Bool) -> Void) {
         print("email: \(email)")
         print("password: \(password)")
         
         guard !email.isEmpty, !password.isEmpty else {
             print("enter email password in login page")
-            return successfulLogin
+            completion(false)
+            return
         }
         
         Task {
@@ -55,13 +57,12 @@ final class SignInEmailViewModel: ObservableObject {
                 successfulLogin = true
                 print("successful login value in View model")
                 print(successfulLogin)
+                completion(true)
             } catch {
                 print("Error: \(error)")
+                completion(false)
             }
         }
-        print("successful login value in View model before the return statement")
-        print(successfulLogin)
-        return successfulLogin
         
     }
 }
