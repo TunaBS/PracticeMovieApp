@@ -39,7 +39,7 @@ final class SignInEmailViewModel: ObservableObject {
         }
     }
     
-    func signIn(email: String, password: String, completion: @escaping (Bool) -> Void) {
+    func signIn(email: String, password: String, navigationState: NavigationState, completion: @escaping (Bool) -> Void) {
         print("email: \(email)")
         print("password: \(password)")
         

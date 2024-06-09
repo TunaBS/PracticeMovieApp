@@ -10,12 +10,16 @@ import SwiftUI
 struct SignInView: View {
     
     @ObservedObject var languageManager = LanguageManager.shared
+    @ObservedObject var navigationState: NavigationState
     @StateObject var signInViewModel = SignInEmailViewModel()
     @State var email = ""
     @State var password = ""
-    @State var successfulLogIn = false
+//    @State var successfulLogIn = false
     @State private var alertMessage: String = ""
     @State var showAlert = false
+    @State private var isPasswordVisible: Bool = false
+    @State private var isConfirmPasswordVisible: Bool = false
+    
     
     var body: some View {
         NavigationStack {
@@ -48,10 +52,17 @@ struct SignInView: View {
                             .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
                             
                             HStack {
-                                SecureField(languageManager.localizedString(forKey: "Password"), text: $password)
-                                    .overlay(
-                                        Image(systemName: "eye.fill").foregroundColor(.primary)
-                                        ,alignment: .trailing)
+                                if isPasswordVisible {
+                                    TextField(languageManager.localizedString(forKey: "Password"), text: $password)
+                                } else {
+                                    SecureField(languageManager.localizedString(forKey: "Password"), text: $password)
+                                }
+                                Button(action: {
+                                    isPasswordVisible.toggle()
+                                }) {
+                                    Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
+                                        .foregroundColor(.primary)
+                                }
                             }
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
@@ -66,9 +77,10 @@ struct SignInView: View {
                         Spacer()
                         
                         Button(action: {
-                            signInViewModel.signIn(email: email, password: password) { success in
+                            signInViewModel.signIn(email: email, password: password, navigationState: navigationState) { success in
                                 if success {
                                     print("login successful")
+                                    navigationState.isLoggedIn = true
                                 } else {
                                     print("not logged in")
                                     alertMessage = "Sorry you couldn't sign in, please give correct information again"
@@ -89,19 +101,25 @@ struct SignInView: View {
                         
                         HStack {
                             Text(languageManager.localizedString(forKey: "Don't have an account?"))
-                            Text(languageManager.localizedString(forKey: "Sign Up"))
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            NavigationLink(destination: RegistrationNewAccountView()) {
+                                Text(languageManager.localizedString(forKey: "Sign Up"))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.primary)
+                            }
                         }
                     }
                 }
             }
             .navigationTitle("Login")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(isPresented: $navigationState.isLoggedIn) {
+                TabViewBelow()
+            }
         }
     }
 }
 
 #Preview {
-    SignInView()
+    SignInView(navigationState: NavigationState())
 }
 //Cannot find 'geomtery' in scope

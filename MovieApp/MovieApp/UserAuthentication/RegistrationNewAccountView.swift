@@ -10,6 +10,7 @@ import SwiftUI
 struct RegistrationNewAccountView: View {
     @ObservedObject var languageManager = LanguageManager.shared
     @StateObject private var signUpViewModel = SignInEmailViewModel()
+    @StateObject private var navigationState = NavigationState()
     @State var email = ""
     @State var password = ""
     @State var confirmPassword = ""
@@ -17,7 +18,9 @@ struct RegistrationNewAccountView: View {
     @State var showAlert: Bool = false
     @State private var alertMessage: String = ""
     @State private var successfulAccountCreation = false
-    
+    @State private var isPasswordVisible: Bool = false
+    @State private var isConfirmPasswordVisible: Bool = false
+        
     var body: some View {
         
         NavigationStack {
@@ -31,11 +34,19 @@ struct RegistrationNewAccountView: View {
                         .opacity(0.2)
                     VStack(alignment: .leading) {
                         VStack (alignment: .leading) {
-                            Text(languageManager.localizedString(forKey: "Welcome"))
-                                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            HStack {
+                                Spacer()
+                                Text(languageManager.localizedString(forKey: "Welcome"))
+                                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                Spacer()
+                            }
+                            HStack {
+                                Spacer()
+                                Text(languageManager.localizedString(forKey: "Create new account"))
+                                Spacer()
+                            }
                             
-                            Text(languageManager.localizedString(forKey: "Create new account"))
                         }
                         .padding()
                         
@@ -51,22 +62,33 @@ struct RegistrationNewAccountView: View {
                             .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
                             
                             HStack {
-                                SecureField(languageManager.localizedString(forKey: "Password"), text: $password)
-                                    .overlay(
-                                        Image(systemName: "eye.fill").foregroundColor(.primary)
-                                        ,alignment: .trailing)
+                                if isPasswordVisible {
+                                    TextField(languageManager.localizedString(forKey: "Password"), text: $password)
+                                } else {
+                                    SecureField(languageManager.localizedString(forKey: "Password"), text: $password)
+                                }
+                                Button(action: {
+                                    isPasswordVisible.toggle()
+                                }) {
+                                    Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
+                                        .foregroundColor(.primary)
+                                }
                             }
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
                             
                             HStack {
-                                SecureField(languageManager.localizedString(forKey: "Confirm Password"), text: $confirmPassword)
-                                    .overlay(
-                                        Image(systemName: "eye.fill").foregroundColor(.primary)
-                                        ,alignment: .trailing)
-                                    .onChange(of: confirmPassword) { newValue in
-                                        checkPasswordMatch()
-                                    }
+                                if isConfirmPasswordVisible {
+                                    TextField(languageManager.localizedString(forKey: "Confirm Password"), text: $confirmPassword)
+                                } else {
+                                    SecureField(languageManager.localizedString(forKey: "Confirm Password"), text: $confirmPassword)
+                                }
+                                Button(action: {
+                                    isConfirmPasswordVisible.toggle()
+                                }) {
+                                    Image(systemName: isConfirmPasswordVisible ? "eye.slash.fill" : "eye.fill")
+                                        .foregroundColor(.primary)
+                                }
                             }
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
@@ -108,12 +130,8 @@ struct RegistrationNewAccountView: View {
             .navigationTitle("Sign Up")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(isPresented: $successfulAccountCreation) {
-                SignInView()
+                SignInView(navigationState: navigationState)
             }
-
-//            NavigationLink(destination: SignInView(), isActive: $successfulAccountCreation) {
-//                EmptyView() // Hide the default NavigationLink label
-//            }
         }
     }
     
