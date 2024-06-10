@@ -14,6 +14,7 @@ struct MovieDetailsView: View {
     @StateObject var viewModel = MovieDetailViewModel()
     @State var castNotFound = Movie.movieShowForTest.cast
     @EnvironmentObject var watchListViewModel: WatchListViewModel
+//    @StateObject var watchListViewModel: WatchListViewModel
     let boolCastNotFound = false
     var hello = true
     

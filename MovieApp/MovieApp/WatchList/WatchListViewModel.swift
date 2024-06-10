@@ -1,4 +1,3 @@
-//
 //  WatchListViewModel.swift
 //  MovieApp
 //
@@ -55,3 +54,51 @@ class WatchListViewModel: ObservableObject {
     }
 }
 
+//class WatchListViewModel: ObservableObject {
+//    
+//    let itemsKey: String = "items_key"
+////    @Published var movieArray: [Movie] = []
+//    @Published var movieArray: [Movie] = [] {
+//        didSet {
+//            saveItems()
+//        }
+//    }
+//    
+//    init() {
+//        getItems()
+//    }
+//    
+//    func getItems() {
+//        Task {
+//            do {
+//                let userInfo = try await AuthenticationManager.shared.getLoggedInUserData()
+//                self.movieArray = userInfo.movies
+//                print("Successfully fetched movies: \(self.movieArray)")
+//            } catch {
+//                print("Failed to fetch user data: \(error)")
+//            }
+//        }
+//    }
+//    func addItems(movie: Movie) {
+//        guard let userID = Auth.auth().currentUser?.uid else {
+//            print("No user is logged in")
+//            return
+//        }
+//        
+//        Task {
+//            do {
+//                try await AuthenticationManager.shared.uploadMovieData(movie: movie, userID: userID)
+//                print("Movie data uploaded for movie: \(movie.title)")
+//            } catch {
+//                print("Failed to upload movie data: \(error)")
+//            }
+//        }
+//    }
+//    
+//    func saveItems() {
+//        if let encodeddData = try? JSONEncoder().encode(movieArray) {
+//            UserDefaults.standard.set(encodeddData,forKey: itemsKey)
+//        }
+//    }
+//}
+//

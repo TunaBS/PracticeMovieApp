@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct WatchListButtonView: View {
     let movie: Movie
@@ -16,7 +17,7 @@ struct WatchListButtonView: View {
     var body: some View {
         Button(action: {
             watchListViewModel.addItems(movie: movie)
-        }, label: {
+            }, label: {
 //            Text("Add to Watchlist")
             Text(languageManager.localizedString(forKey: "Add to WatchList"))
                 .padding(10)

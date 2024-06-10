@@ -11,7 +11,7 @@ struct LaunchScreenView: View {
     
     @ObservedObject var languageManager = LanguageManager.shared
     @StateObject private var navigationState = NavigationState()
-    @StateObject private var viewModel = SignInEmailViewModel()
+//    @StateObject private var viewModel = SignInEmailViewModel()
     @State private var userNotLoggedIn = false
     
     

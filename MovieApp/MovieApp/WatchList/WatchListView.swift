@@ -36,8 +36,8 @@ struct WatchListView: View {
 //                                    .*padding(.vertical, 20)*/
                             }
                         }
-                        .onDelete(perform: watchListViewModel.deleteItems)
-                        .onMove(perform: watchListViewModel.moveItems)
+//                        .onDelete(perform: watchListViewModel.deleteItems)
+//                        .onMove(perform: watchListViewModel.moveItems)
                         .buttonStyle(PlainButtonStyle()) // Hide the ">" sign
 //                        .lineSpacing(20.0)
                     }

@@ -11,7 +11,7 @@ struct SignInView: View {
     
     @ObservedObject var languageManager = LanguageManager.shared
     @ObservedObject var navigationState: NavigationState
-    @StateObject var signInViewModel = SignInEmailViewModel()
+//    @StateObject var signInViewModel = SignInEmailViewModel()
     @State var email = ""
     @State var password = ""
 //    @State var successfulLogIn = false
@@ -19,7 +19,7 @@ struct SignInView: View {
     @State var showAlert = false
     @State private var isPasswordVisible: Bool = false
     @State private var isConfirmPasswordVisible: Bool = false
-    
+    @EnvironmentObject var signingViewModel: AuthenticationManager
     
     var body: some View {
         NavigationStack {
@@ -77,16 +77,19 @@ struct SignInView: View {
                         Spacer()
                         
                         Button(action: {
-                            signInViewModel.signIn(email: email, password: password, navigationState: navigationState) { success in
-                                if success {
-                                    print("login successful")
-                                    navigationState.isLoggedIn = true
-                                } else {
-                                    print("not logged in")
-                                    alertMessage = "Sorry you couldn't sign in, please give correct information again"
-                                    showAlert = true
-                                }
+                            Task {
+                                try await signingViewModel.signIn(email: email, password: password)
                             }
+//                            signInViewModel.signIn(email: email, password: password, navigationState: navigationState) { success in
+//                                if success {
+//                                    print("login successful")
+//                                    navigationState.isLoggedIn = true
+//                                } else {
+//                                    print("not logged in")
+//                                    alertMessage = "Sorry you couldn't sign in, please give correct information again"
+//                                    showAlert = true
+//                                }
+//                            }
                         }, label: {
                             Text(languageManager.localizedString(forKey: "Sign In"))
                                 .foregroundColor(.white)
@@ -95,6 +98,8 @@ struct SignInView: View {
                         .padding()
                         .background(RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/).fill(Color.purple))
                         .padding()
+                        .disabled(!formIsValid)
+                        .opacity(formIsValid ? 1.0 : 0.6)
                         .alert(isPresented: $showAlert){
                             Alert(title: Text("Error Signing In"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                         }
@@ -116,6 +121,15 @@ struct SignInView: View {
                 TabViewBelow()
             }
         }
+    }
+}
+
+extension SignInView: AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty 
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
     }
 }
 

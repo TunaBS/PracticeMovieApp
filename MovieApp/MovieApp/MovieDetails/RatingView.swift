@@ -39,9 +39,9 @@ struct RatingView: View {
                 
             }
             .padding()
-            Divider()
-                .frame(height: 100)
-//                .fontWeight(5.0)
+            Rectangle()
+                .frame(width: 2, height: 100)
+                
             VStack(alignment: .center){
                 Text("Your Rating")
                     .font(.title2)

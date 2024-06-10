@@ -25,6 +25,9 @@ struct MovieAppApp: App {
 //                TabViewBelow()
                 LaunchScreenView()
                     .preferredColorScheme(isDarkModeEnabled ? .dark : .light)
+                    .environmentObject(WatchListViewModel())
+                    .environmentObject(NetworkLoaderViewModel())
+                    .environmentObject(AuthenticationManager())
             }
 //            .environmentObject(watchListViewModel)
         }

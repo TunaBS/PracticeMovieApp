@@ -9,8 +9,9 @@ import SwiftUI
 
 struct RegistrationNewAccountView: View {
     @ObservedObject var languageManager = LanguageManager.shared
-    @StateObject private var signUpViewModel = SignInEmailViewModel()
+//    @StateObject private var signUpViewModel = SignInEmailViewModel()
     @StateObject private var navigationState = NavigationState()
+    @State var userName = ""
     @State var email = ""
     @State var password = ""
     @State var confirmPassword = ""
@@ -20,7 +21,8 @@ struct RegistrationNewAccountView: View {
     @State private var successfulAccountCreation = false
     @State private var isPasswordVisible: Bool = false
     @State private var isConfirmPasswordVisible: Bool = false
-        
+    @EnvironmentObject var signingViewModel: AuthenticationManager
+    
     var body: some View {
         
         NavigationStack {
@@ -54,6 +56,13 @@ struct RegistrationNewAccountView: View {
                         
                         VStack (alignment: .leading) {
                             HStack {
+                                TextField(languageManager.localizedString(forKey: "User Name"), text: $userName)
+                                    
+                            }
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
+                            
+                            HStack {
                                 TextField(languageManager.localizedString(forKey: "Email"), text: $email)
                                     .autocapitalization(.none)
                                     
@@ -78,10 +87,13 @@ struct RegistrationNewAccountView: View {
                             .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
                             
                             HStack {
+                                
                                 if isConfirmPasswordVisible {
                                     TextField(languageManager.localizedString(forKey: "Confirm Password"), text: $confirmPassword)
+                                    
                                 } else {
                                     SecureField(languageManager.localizedString(forKey: "Confirm Password"), text: $confirmPassword)
+                                    
                                 }
                                 Button(action: {
                                     isConfirmPasswordVisible.toggle()
@@ -89,6 +101,7 @@ struct RegistrationNewAccountView: View {
                                     Image(systemName: isConfirmPasswordVisible ? "eye.slash.fill" : "eye.fill")
                                         .foregroundColor(.primary)
                                 }
+                                
                             }
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
@@ -98,23 +111,31 @@ struct RegistrationNewAccountView: View {
                         .padding()
                         
                         Spacer()
-                        
-                        
                         Button(action: {
-                            if passwordCorrect{
-                                signUpViewModel.signUp(email: email, password: password) { success in
-                                    if !success {
-                                        alertMessage = "Sign Up isn't successful, please try again"
-                                    } else { successfulAccountCreation = true }
-                                }
-                            } else {
-                                alertMessage = "Your password didn't match"
-                                showAlert = true
+//                            signUpViewModel.signUp(email: email, password: password, userName: userName) { success in
+//                                if !success {
+//                                    alertMessage = "Sign Up isn't successful, please try again"
+//                                } else { successfulAccountCreation = true }
+//                            }
+//                            if passwordCorrect{
+//                                signUpViewModel.signUp(email: email, password: password) { success in
+//                                    if !success {
+//                                        alertMessage = "Sign Up isn't successful, please try again"
+//                                    } else { successfulAccountCreation = true }
+//                                }
+//                            } else {
+//                                alertMessage = "Your password didn't match"
+//                                showAlert = true
+//                            }
+                            Task {
+                                try await signingViewModel.createUser(email: email, password: password, userName: userName)
                             }
                         }, label: {
                             Text(languageManager.localizedString(forKey: "Sign Up"))
                                 .foregroundColor(.white)
                         })
+                        .disabled(!formIsValid)
+                        .opacity(formIsValid ? 1.0 : 0.6)
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 30)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/).fill(Color.purple))
@@ -150,6 +171,16 @@ struct RegistrationNewAccountView: View {
     }
 }
 
+extension RegistrationNewAccountView: AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty 
+        && !userName.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
+        && password == confirmPassword
+    }
+}
 #Preview {
     RegistrationNewAccountView()
 }
