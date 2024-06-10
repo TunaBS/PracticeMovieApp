@@ -11,20 +11,28 @@ struct SettingsView: View {
     @State private var isToggled = false
     @AppStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
     @ObservedObject var languageManager = LanguageManager.shared
-        
+    @EnvironmentObject var signingViewModel: AuthenticationManager
     
     var body: some View {
-        VStack (alignment: .leading) {
-            HStack {
-//                Text("Settings")
-                Text(languageManager.localizedString(forKey: "Settings"))
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                Spacer()
-            }
-            .padding()
+        List {
+//            HStack {
+////                Text("Settings")
+//                Text(languageManager.localizedString(forKey: "Settings"))
+//                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+//                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+//                Spacer()
+//            }
+//            .padding()
             
-            VStack(alignment: .leading) {
+            Section {
+                VStack (alignment: .leading) {
+                    Text(UserInfo.userShowForTest.userName ?? "No User found")
+                        .fontWeight(.bold)
+                    Text(UserInfo.userShowForTest.email ?? "no email found")
+                }
+            }
+            
+            Section("General") {
                 HStack {
 //                    Text("Language")
                     Text(languageManager.localizedString(forKey: "Language"))
@@ -33,12 +41,6 @@ struct SettingsView: View {
                     .padding()
                     Spacer()
                     HStack {
-//                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-//                            Text("Eng")
-//                        })
-//                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-//                            Text("Ban")
-//                        })
                         Button(action: {
                             languageManager.setLanguage(.english)
                         }) {
@@ -52,8 +54,6 @@ struct SettingsView: View {
                     }
                     .padding()
                 }
-                
-                
                 HStack {
 //                    Text("Theme")
                     Text(languageManager.localizedString(forKey: "Dark Theme"))
@@ -64,12 +64,45 @@ struct SettingsView: View {
                     Toggle(isOn: $isDarkModeEnabled) {
                         
                     }
-                    .padding()
                 }
-                Spacer()
+            }
+            
+            Section("User Profile") {
+                HStack {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.red)
+                    
+                    Button(action: {
+                        Task {
+                            try await signingViewModel.signOut()
+                        }
+                    }, label: {
+                        Text(languageManager.localizedString(forKey: "Sign Out"))
+                            .font(.title3)
+                            .foregroundColor(.primary)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    })
+                    
+                }
+                
+//                Spacer()
+                
+                HStack {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.red)
+                    Button(action: {
+                        Task {
+                            try await signingViewModel.deleteAccount()
+                        }
+                    }, label: {
+                        Text(languageManager.localizedString(forKey: "Delete Account"))
+                            .font(.title3)
+                            .foregroundColor(.primary)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    })
+                }
             }
         }
-        .padding()
     }
 }
 

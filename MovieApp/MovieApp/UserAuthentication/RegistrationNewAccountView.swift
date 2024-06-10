@@ -150,9 +150,9 @@ struct RegistrationNewAccountView: View {
             }
             .navigationTitle("Sign Up")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(isPresented: $successfulAccountCreation) {
-                SignInView(navigationState: navigationState)
-            }
+//            .navigationDestination(isPresented: $successfulAccountCreation) {
+//                SignInView(navigationState: navigationState)
+//            }
         }
     }
     

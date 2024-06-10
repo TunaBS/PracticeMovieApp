@@ -66,7 +66,7 @@ class AuthenticationManager: ObservableObject {
         print("Fetched current user \(self.currentUser)")
     }
     
-    func signOut () {
+    func signOut () async throws {
         do {
             try Auth.auth().signOut()
             self.userFirebaseSession = nil
@@ -75,6 +75,21 @@ class AuthenticationManager: ObservableObject {
             print("Error while signing out \(error)")
         }
     }
+    
+    func deleteAccount() async throws {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        do {
+            try await Firestore.firestore().collection("users").document(user.uid).delete()
+            try await user.delete()
+            self.userFirebaseSession = nil
+            self.currentUser = nil
+            print("Account deleted")
+        } catch {
+            print("DEBUG: Failed to delete account with Error \(error)")
+        }
+    }
+
 }
 //    func createUser(email: String, password: String, userName: String) async throws -> UserInfo {
 //        let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)

@@ -12,6 +12,8 @@ struct TabViewBelow: View {
     @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
     @StateObject var watchListViewModel: WatchListViewModel = WatchListViewModel()
 //    @StateObject var searchListMovie: SearchViewModel = SearchViewModel()
+    @StateObject var signingViewModel: AuthenticationManager = AuthenticationManager()
+    
     
     init(){
             let tabBarAppearance = UITabBarAppearance()
@@ -47,7 +49,7 @@ struct TabViewBelow: View {
         }
         .environmentObject(viewModel)
         .environmentObject(watchListViewModel)
-//        .environmentObject(searchListMovie)
+        .environmentObject(signingViewModel)
     }
 }
 

@@ -12,7 +12,7 @@ struct HomePageView: View {
     @State var viewModel = NetworkLoaderViewModel()
     @State private var isLoaded = false
     @ObservedObject var languageManager = LanguageManager.shared
-    
+    @StateObject var signingViewModel = AuthenticationManager()
     
     var body: some View {
         NavigationStack {

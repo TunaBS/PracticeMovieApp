@@ -10,7 +10,7 @@ import SwiftUI
 struct SignInView: View {
     
     @ObservedObject var languageManager = LanguageManager.shared
-    @ObservedObject var navigationState: NavigationState
+//    @ObservedObject var navigationState: NavigationState
 //    @StateObject var signInViewModel = SignInEmailViewModel()
     @State var email = ""
     @State var password = ""
@@ -67,10 +67,10 @@ struct SignInView: View {
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 25).fill(Color.primary.opacity(0.25)))
                             
-                            HStack {
-                                Spacer()
-                                Text(languageManager.localizedString(forKey: "Forgot Password?"))
-                            }
+//                            HStack {
+//                                Spacer()
+//                                Text(languageManager.localizedString(forKey: "Forgot Password?"))
+//                            }
                         }
                         .padding()
                         
@@ -117,9 +117,9 @@ struct SignInView: View {
             }
             .navigationTitle("Login")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(isPresented: $navigationState.isLoggedIn) {
-                TabViewBelow()
-            }
+//            .navigationDestination(isPresented: $navigationState.isLoggedIn) {
+//                TabViewBelow()
+//            }
         }
     }
 }
@@ -134,6 +134,6 @@ extension SignInView: AuthenticationFormProtocol {
 }
 
 #Preview {
-    SignInView(navigationState: NavigationState())
+    SignInView(/*navigationState: NavigationState()*/)
 }
 //Cannot find 'geomtery' in scope
