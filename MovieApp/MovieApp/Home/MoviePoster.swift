@@ -10,7 +10,7 @@ import SwiftUI
 struct MoviePoster: View {
     var movie: Movie
     var body: some View {
-        VStack(alignment: .leading, spacing: 0){
+        VStack(alignment: .leading){
             AsyncImage(url: URL(string: movie.largeCoverImage)) {phase in
                 if let image = phase.image {
                     image
@@ -29,7 +29,7 @@ struct MoviePoster: View {
             }
             .frame(height: 350)
             Text(movie.title)
-                .font(.title3)
+                .font(.headline)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .lineLimit(1)
                 .truncationMode(/*@START_MENU_TOKEN@*/.tail/*@END_MENU_TOKEN@*/)

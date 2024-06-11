@@ -125,4 +125,5 @@ extension SignInView: AuthenticationFormProtocol {
 
 #Preview {
     SignInView(/*navigationState: NavigationState()*/)
+        .environmentObject(AuthenticationManager())
 }

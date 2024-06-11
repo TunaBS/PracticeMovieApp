@@ -40,7 +40,7 @@ struct MovieCard: View {
                         
                         Text(movie.title)
                             .foregroundColor(.primary)
-                            .font(.title3)
+                            .font(.headline)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .multilineTextAlignment(.leading)
                         

@@ -48,7 +48,7 @@ struct TabViewBelow: View {
         }
         .environmentObject(viewModel)
         .environmentObject(watchListViewModel)
-//        .environmentObject(signingViewModel)
+        .environmentObject(signingViewModel)
     }
 }
 
@@ -64,6 +64,6 @@ struct TabViewBelow_Previews: PreviewProvider {
         }
         .environmentObject(NetworkLoaderViewModel())
         .environmentObject(WatchListViewModel())
-        .environmentObject(AuthenticationManager())
+//        .environmentObject(AuthenticationManager())
     }
 }

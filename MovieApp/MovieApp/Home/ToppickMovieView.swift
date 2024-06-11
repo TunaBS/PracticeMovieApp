@@ -17,7 +17,7 @@ struct ToppickMovieView: View {
             VStack{
                 HStack{
                     Text(languageManager.localizedString(forKey: "Top Movie Picks"))
-                        .font(.title)
+                        .font(.title2)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     Spacer()
                     NavigationLink(destination: MovieListView()) {
@@ -27,7 +27,7 @@ struct ToppickMovieView: View {
                 }
                 
                 ScrollView(.horizontal) {
-                    HStack(spacing: 15) {
+                    HStack {
                         ForEach(movieList, id: \.id) { movie in
                             NavigationLink(destination: MovieDetailsView(idMovie: movie.id)) {
                                 MoviePoster(movie: movie)

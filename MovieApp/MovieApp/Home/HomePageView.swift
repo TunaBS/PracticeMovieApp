@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomePageView: View {
 //    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel() //changed this
-    @State var viewModel = NetworkLoaderViewModel()
+//    @State var viewModel = NetworkLoaderViewModel()
+    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
     @State private var isLoaded = false
     @ObservedObject var languageManager = LanguageManager.shared
     @EnvironmentObject var signingViewModel: AuthenticationManager
@@ -24,10 +25,10 @@ struct HomePageView: View {
                             VStack(alignment: .leading){
 //                                Text("Welcome Back,")
                                 Text(languageManager.localizedString(forKey: "Welcome Back"))
-                                    .font(.title2)
+                                    .font(.title3)
                                 Text(signingViewModel.currentUser?.userName ?? "")
 //                                Text(languageManager.localizedString(forKey: "User Name"))
-                                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                    .font(.title3)
                                     .fontWeight(.bold)
                             }
                             .padding()
@@ -67,5 +68,6 @@ struct HomePageView: View {
 #Preview {
 //    NavigationView {
         HomePageView()
+        .environmentObject(AuthenticationManager())
 //    }
 }

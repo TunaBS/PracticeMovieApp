@@ -9,7 +9,7 @@ import SwiftUI
 struct WatchListView: View {
     @EnvironmentObject var watchListViewModel: WatchListViewModel
     @ObservedObject var languageManager = LanguageManager.shared
-    @EnvironmentObject var signingViewModel: AuthenticationManager
+//    @EnvironmentObject var signingViewModel: AuthenticationManager
     
     var body: some View {
         
@@ -36,8 +36,8 @@ struct WatchListView: View {
 //                                    .*padding(.vertical, 20)*/
                             }
                         }
-//                        .onDelete(perform: watchListViewModel.deleteItems)
-//                        .onMove(perform: watchListViewModel.moveItems)
+                        .onDelete(perform: watchListViewModel.deleteItems)
+                        .onMove(perform: watchListViewModel.moveItems)
                         .buttonStyle(PlainButtonStyle()) // Hide the ">" sign
 //                        .lineSpacing(20.0)
                     }
@@ -57,6 +57,6 @@ struct WatchListView_Previews: PreviewProvider {
             WatchListView()
         }
         .environmentObject(WatchListViewModel())
-        .environmentObject(AuthenticationManager())
+//        .environmentObject(AuthenticationManager())
     }
 }

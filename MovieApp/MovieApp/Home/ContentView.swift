@@ -29,15 +29,19 @@ struct ContentView: View {
     
 //    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
     @EnvironmentObject var signingViewModel: AuthenticationManager
+    @AppStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
     
     var body: some View {
         Group {
             if signingViewModel.userFirebaseSession != nil {
                 TabViewBelow()
+                    .environmentObject(signingViewModel)
             } else {
                 SignInView()
             }
         }
+        
+        .preferredColorScheme(isDarkModeEnabled ? .dark: .light)
     }//end of body
 }
 
