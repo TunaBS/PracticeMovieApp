@@ -25,10 +25,14 @@ struct SettingsView: View {
 //            .padding()
             
             Section {
-                VStack (alignment: .leading) {
-                    Text(UserInfo.userShowForTest.userName ?? "No User found")
-                        .fontWeight(.bold)
-                    Text(UserInfo.userShowForTest.email ?? "no email found")
+                HStack {
+                    Image(systemName: "person.circle")
+                        .font(.largeTitle)
+                    VStack (alignment: .leading) {
+                        Text(signingViewModel.currentUser?.userName ?? "")
+                            .fontWeight(.bold)
+                        Text(signingViewModel.currentUser?.email ?? "")
+                    }
                 }
             }
             
@@ -115,8 +119,10 @@ struct SettingsView_Previews: PreviewProvider {
         Group {
             SettingsView()
                 .environment(\.locale, Locale.init(identifier: "en"))
+                .environmentObject(AuthenticationManager())
             SettingsView()
                 .environment(\.locale, Locale.init(identifier: "bn"))
+                .environmentObject(AuthenticationManager())
         }
     }
 }

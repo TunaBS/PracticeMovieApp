@@ -12,7 +12,8 @@ struct HomePageView: View {
     @State var viewModel = NetworkLoaderViewModel()
     @State private var isLoaded = false
     @ObservedObject var languageManager = LanguageManager.shared
-    @StateObject var signingViewModel = AuthenticationManager()
+    @EnvironmentObject var signingViewModel: AuthenticationManager
+
     
     var body: some View {
         NavigationStack {
@@ -24,7 +25,7 @@ struct HomePageView: View {
 //                                Text("Welcome Back,")
                                 Text(languageManager.localizedString(forKey: "Welcome Back"))
                                     .font(.title2)
-                                Text(UserInfo.userShowForTest.userName ?? "No user found")
+                                Text(signingViewModel.currentUser?.userName ?? "")
 //                                Text(languageManager.localizedString(forKey: "User Name"))
                                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                                     .fontWeight(.bold)

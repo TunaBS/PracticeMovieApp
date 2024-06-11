@@ -12,8 +12,7 @@ struct TabViewBelow: View {
     @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
     @StateObject var watchListViewModel: WatchListViewModel = WatchListViewModel()
 //    @StateObject var searchListMovie: SearchViewModel = SearchViewModel()
-    @StateObject var signingViewModel: AuthenticationManager = AuthenticationManager()
-    
+    @EnvironmentObject var signingViewModel: AuthenticationManager
     
     init(){
             let tabBarAppearance = UITabBarAppearance()
@@ -49,7 +48,7 @@ struct TabViewBelow: View {
         }
         .environmentObject(viewModel)
         .environmentObject(watchListViewModel)
-        .environmentObject(signingViewModel)
+//        .environmentObject(signingViewModel)
     }
 }
 
@@ -65,6 +64,6 @@ struct TabViewBelow_Previews: PreviewProvider {
         }
         .environmentObject(NetworkLoaderViewModel())
         .environmentObject(WatchListViewModel())
-//        .environmentObject(SearchViewModel())
+        .environmentObject(AuthenticationManager())
     }
 }

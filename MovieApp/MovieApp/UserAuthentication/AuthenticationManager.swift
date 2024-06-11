@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseFirestoreSwift
+import FirebaseCore
 
 //struct AuthDataResultModel {
 //    let uid: String
@@ -60,10 +63,13 @@ class AuthenticationManager: ObservableObject {
     }
     
     func fetchUser() async {
+        print("into fetch user function")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
         self.currentUser = try? snapshot.data(as: UserInfo.self)
         print("Fetched current user \(self.currentUser)")
+        print("current user name \(self.currentUser?.userName)")
+        print("current user email id \(self.currentUser?.email)")
     }
     
     func signOut () async throws {
@@ -90,6 +96,19 @@ class AuthenticationManager: ObservableObject {
         }
     }
 
+    func updateInFirestore (movieArray: [Movie]) async throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let personInfo = Firestore.firestore().collection("users").document(uid)
+        do {
+//            let encodedMovieArray = try Firestore.Encoder().encode(movieArray)
+            let encoder = JSONEncoder()
+            let encodedMovieArray = try encoder.encode(movieArray)
+            try await personInfo.updateData(["movies": encodedMovieArray])
+            print("Document successfully updated")
+        } catch {
+            print("Error updating document: \(error)")
+        }
+    }
 }
 //    func createUser(email: String, password: String, userName: String) async throws -> UserInfo {
 //        let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)

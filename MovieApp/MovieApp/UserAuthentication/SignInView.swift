@@ -80,16 +80,6 @@ struct SignInView: View {
                             Task {
                                 try await signingViewModel.signIn(email: email, password: password)
                             }
-//                            signInViewModel.signIn(email: email, password: password, navigationState: navigationState) { success in
-//                                if success {
-//                                    print("login successful")
-//                                    navigationState.isLoggedIn = true
-//                                } else {
-//                                    print("not logged in")
-//                                    alertMessage = "Sorry you couldn't sign in, please give correct information again"
-//                                    showAlert = true
-//                                }
-//                            }
                         }, label: {
                             Text(languageManager.localizedString(forKey: "Sign In"))
                                 .foregroundColor(.white)
@@ -136,4 +126,3 @@ extension SignInView: AuthenticationFormProtocol {
 #Preview {
     SignInView(/*navigationState: NavigationState()*/)
 }
-//Cannot find 'geomtery' in scope

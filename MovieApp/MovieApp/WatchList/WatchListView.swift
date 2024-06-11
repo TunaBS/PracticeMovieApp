@@ -4,12 +4,12 @@
 //
 //  Created by BS00880 on 3/6/24.
 //
-
 import SwiftUI
 
 struct WatchListView: View {
     @EnvironmentObject var watchListViewModel: WatchListViewModel
     @ObservedObject var languageManager = LanguageManager.shared
+    @EnvironmentObject var signingViewModel: AuthenticationManager
     
     var body: some View {
         
@@ -30,7 +30,7 @@ struct WatchListView: View {
                 }
                 else {
                     List {
-                        ForEach(watchListViewModel.movieArray, id: \.id) { movie in
+                        ForEach(/*signingViewModel.currentUser?.movies ?? Movie.movieArrayShowForTest*/ watchListViewModel.movieArray, id: \.id) { movie in
                             NavigationLink(destination: MovieDetailsView(idMovie: movie.id)) {
                                 MovieCard(movie: movie, showWatchListButton: false)
 //                                    .*padding(.vertical, 20)*/
@@ -57,5 +57,6 @@ struct WatchListView_Previews: PreviewProvider {
             WatchListView()
         }
         .environmentObject(WatchListViewModel())
+        .environmentObject(AuthenticationManager())
     }
 }

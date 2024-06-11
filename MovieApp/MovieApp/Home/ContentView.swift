@@ -27,17 +27,21 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
+//    @StateObject var viewModel: NetworkLoaderViewModel = NetworkLoaderViewModel()
+    @EnvironmentObject var signingViewModel: AuthenticationManager
+    
     var body: some View {
-        Text("Hello World")
-//        HomePageView()
-//        NavigationView {
-//            TabViewBelow()
-//        }
-//        .environmentObject(viewModel)
+        Group {
+            if signingViewModel.userFirebaseSession != nil {
+                TabViewBelow()
+            } else {
+                SignInView()
+            }
+        }
     }//end of body
 }
 
 #Preview {
     ContentView()
+        .environmentObject(AuthenticationManager())
 }

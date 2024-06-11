@@ -5,8 +5,14 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import FirebaseAuth
 
 class WatchListViewModel: ObservableObject {
+    @Published var userFirebaseSession: FirebaseAuth.User?
+    @Published var currentUser: UserInfo?
+    
     
     let itemsKey: String = "items_key"
     @Published var movieArray: [Movie] = [] {
@@ -16,6 +22,7 @@ class WatchListViewModel: ObservableObject {
     }
     
     init() {
+        self.userFirebaseSession = Auth.auth().currentUser
         getItems()
     }
     
@@ -45,6 +52,9 @@ class WatchListViewModel: ObservableObject {
     
     func addItems(movie: Movie) {
         movieArray.contains(where: { $0.id == movie.id }) ? print("This movie already exists in your watch list") : movieArray.append(movie)
+        Task {
+            try await updateInFirestore()
+        }
     }
     
     func saveItems() {
@@ -52,6 +62,40 @@ class WatchListViewModel: ObservableObject {
             UserDefaults.standard.set(encodeddData,forKey: itemsKey)
         }
     }
+    
+    func updateInFirestore () async throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let personInfo = Firestore.firestore().collection("users").document(uid)
+        do {
+//            let encodedMovieArray = try Firestore.Encoder().encode(movieArray)
+            let encoder = JSONEncoder()
+            let encodedMovieArray = try encoder.encode(movieArray)
+            try await personInfo.updateData(["movies": encodedMovieArray])
+            print("Document successfully updated")
+        } catch {
+            print("Error updating document: \(error)")
+        }
+    }
+//        do {
+////            guard let uid = Auth.auth().currentUser?.uid else { return }
+//            let user = UserInfo(id: currentUser.id, email: currentUser.email, userName: currentUser.userName, movies: movieArray)
+//            let encodedUser = try Firestore.Encoder().encode(user)
+//            try await Firestore.firestore().collection("users").document(currentUser.id).updateData()
+//        } catch {
+//            
+//        }
+//        let washingtonRef = db.collection("cities").document("DC")
+//
+//        // Set the "capital" field of the city 'DC'
+//        do {
+//          try await washingtonRef.updateData([
+//            "capital": true
+//          ])
+//          print("Document successfully updated")
+//        } catch {
+//          print("Error updating document: \(error)")
+//        }
+//    }
 }
 
 //class WatchListViewModel: ObservableObject {

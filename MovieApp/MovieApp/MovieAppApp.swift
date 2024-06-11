@@ -16,7 +16,7 @@ struct MovieAppApp: App {
     @AppStorage("hasCompletedOnboarding") var hasCompletedOnboarding: Bool = false
 //    @EnvironmentObject var signingViewModel: AuthenticationManager
 //    @StateObject var signingViewModel = AuthenticationManager()
-    
+    @StateObject var signingViewModel = AuthenticationManager()
 
     init() {
         FirebaseApp.configure()
@@ -26,8 +26,12 @@ struct MovieAppApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
+                ContentView()
+                    .environmentObject(signingViewModel)
 //                if hasCompletedOnboarding {
-//                    TabViewBelow() 
+//                    ContentView()
+//                        .environmentObject(signingViewModel)
+//                    TabViewBelow()
 //                        .preferredColorScheme(isDarkModeEnabled ? .dark : .light)
 //                        .environmentObject(WatchListViewModel())
 //                        .environmentObject(NetworkLoaderViewModel())
@@ -39,12 +43,12 @@ struct MovieAppApp: App {
 //                        .environmentObject(NetworkLoaderViewModel())
 //                        .environmentObject(AuthenticationManager())
 //                }
-                TabViewBelow()
-//                LaunchScreenView()
-                    .preferredColorScheme(isDarkModeEnabled ? .dark : .light)
-                    .environmentObject(WatchListViewModel())
-                    .environmentObject(NetworkLoaderViewModel())
-                    .environmentObject(AuthenticationManager())
+//                TabViewBelow()
+////                LaunchScreenView()
+//                    .preferredColorScheme(isDarkModeEnabled ? .dark : .light)
+//                    .environmentObject(WatchListViewModel())
+//                    .environmentObject(NetworkLoaderViewModel())
+//                    .environmentObject(AuthenticationManager())
             }
 //            .environmentObject(watchListViewModel)
         }

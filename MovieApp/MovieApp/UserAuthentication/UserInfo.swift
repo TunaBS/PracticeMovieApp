@@ -11,7 +11,7 @@ struct UserInfo: Identifiable, Codable {
     let id: String
     let email: String?
     let userName: String?
-    let movies : [Movie]
+    var movies : [Movie]?
 }
 
 extension UserInfo{
