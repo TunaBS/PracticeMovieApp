@@ -11,6 +11,8 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseCore
+import GoogleSignIn
+import GoogleSignInSwift
 
 //struct AuthDataResultModel {
 //    let uid: String
@@ -64,9 +66,9 @@ class AuthenticationManager: ObservableObject {
     
     func fetchUser() async {
         print("into fetch user function from authentication manager")
-//        guard let uid = Auth.auth().currentUser?.uid else { return }
-//        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
-//        self.currentUser = try? snapshot.data(as: UserInfo.self)
+        //        guard let uid = Auth.auth().currentUser?.uid else { return }
+        //        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
+        //        self.currentUser = try? snapshot.data(as: UserInfo.self)
         guard let uid = Auth.auth().currentUser?.uid else {return}
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
         print("snapshot data: \(snapshot)")
@@ -98,6 +100,38 @@ class AuthenticationManager: ObservableObject {
         } catch {
             print("DEBUG: Failed to delete account with Error \(error)")
         }
+    }
+    
+    func signInWithGoogle() async throws {
+        guard let topView = TopViewController.shared.topViewController() else {
+            throw URLError(.cannotFindHost)
+        }
+        
+        do {
+            let googleSignInResult = try await GIDSignIn.sharedInstance.signIn(withPresenting: topView)
+            
+            guard let idToken = googleSignInResult.user.idToken?.tokenString else {
+                throw URLError(.badServerResponse)
+            }
+            let accessToken = googleSignInResult.user.accessToken.tokenString
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+            
+            let authDataResult = try await Auth.auth().signIn(with: credential)
+            
+            let uid = authDataResult.user.uid
+            guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
+            self.userFirebaseSession = authDataResult.user
+            if !snapshot.exists {
+                let user = UserInfo(id: uid, email: authDataResult.user.email, userName: authDataResult.user.displayName, movies: [])
+                let encodedUser = try Firestore.Encoder().encode(user)
+                try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
+            }
+            await fetchUser()
+        } catch {
+            print("Error in creating user with google sign in \(error)")
+        }
+
     }
 
 //    func updateInFirestore (movieArray: [Movie]) async throws {

@@ -94,6 +94,25 @@ struct SignInView: View {
                             Alert(title: Text("Error Signing In"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                         }
                         
+                        Button(action: {
+                            Task {
+                                try await signingViewModel.signInWithGoogle()
+                            }
+                        }, label: {
+                            HStack {
+                                Image("googleLogo")
+                                    .resizable()
+                                    .frame(maxWidth: 30, maxHeight: 30)
+                                Text(languageManager.localizedString(forKey: "Sign In With Google"))
+                            }
+                        })
+                        .frame(maxWidth: .infinity, maxHeight: 30)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 25.0).fill(Color.white))
+                        .padding()
+                        .alert(isPresented: $showAlert){
+                            Alert(title: Text("Error Signing In"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                        }
                         HStack {
                             Text(languageManager.localizedString(forKey: "Don't have an account?"))
                             NavigationLink(destination: RegistrationNewAccountView()) {
