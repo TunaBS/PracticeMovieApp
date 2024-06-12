@@ -36,7 +36,6 @@
 		4B5ECC442C196D18003785F5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4B5ECC432C196D18003785F5 /* GoogleSignInSwift */; };
 		4B5ECC472C196F35003785F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B5ECC462C196F35003785F5 /* GoogleService-Info.plist */; };
 		4B5ECC4B2C197269003785F5 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5ECC4A2C197269003785F5 /* TopViewController.swift */; };
-		4B67CF882C103D6600BD793A /* ConstantThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B67CF872C103D6600BD793A /* ConstantThings.swift */; };
 		4B67CF8A2C1061F500BD793A /* GenreSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B67CF892C1061F500BD793A /* GenreSelectionView.swift */; };
 		4B67CF8C2C1084BE00BD793A /* ListPlacingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B67CF8B2C1084BE00BD793A /* ListPlacingView.swift */; };
 		4B681B8C2C16BC400010CEAB /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B681B8B2C16BC400010CEAB /* UserInfo.swift */; };
@@ -101,7 +100,6 @@
 		4B5ECC452C196E12003785F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4B5ECC462C196F35003785F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4B5ECC4A2C197269003785F5 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
-		4B67CF872C103D6600BD793A /* ConstantThings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantThings.swift; sourceTree = "<group>"; };
 		4B67CF892C1061F500BD793A /* GenreSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreSelectionView.swift; sourceTree = "<group>"; };
 		4B67CF8B2C1084BE00BD793A /* ListPlacingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPlacingView.swift; sourceTree = "<group>"; };
 		4B681B8B2C16BC400010CEAB /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 		4B67CF862C103D4800BD793A /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				4B67CF872C103D6600BD793A /* ConstantThings.swift */,
 				4B68638D2C11CB2F00522AE7 /* ShimmerEffect.swift */,
 				4B5ECC4A2C197269003785F5 /* TopViewController.swift */,
 			);
@@ -456,7 +453,6 @@
 				4BBCB37B2C09A73400AC8945 /* MovieBannerView.swift in Sources */,
 				4B750B092C14A1240000D68F /* NavigationState.swift in Sources */,
 				4B6E523E2C0D878C00D7DB21 /* WatchListView.swift in Sources */,
-				4B67CF882C103D6600BD793A /* ConstantThings.swift in Sources */,
 				4B4738312C0EDF2500A65DC3 /* UIApplicationSwift.swift in Sources */,
 				4B48F5FD2C06DBA4002A3EAD /* MovieDetail.swift in Sources */,
 				4B5066872C08995C0039F131 /* SettingsView.swift in Sources */,
