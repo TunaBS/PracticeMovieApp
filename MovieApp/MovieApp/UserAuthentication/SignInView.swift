@@ -77,9 +77,11 @@ struct SignInView: View {
                         Spacer()
                         
                         Button(action: {
+
                             Task {
                                 try await signingViewModel.signIn(email: email, password: password)
                             }
+
                         }, label: {
                             Text(languageManager.localizedString(forKey: "Sign In"))
                                 .foregroundColor(.white)

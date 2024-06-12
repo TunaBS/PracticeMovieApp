@@ -10,7 +10,7 @@ import SwiftUI
 struct RegistrationNewAccountView: View {
     @ObservedObject var languageManager = LanguageManager.shared
 //    @StateObject private var signUpViewModel = SignInEmailViewModel()
-    @StateObject private var navigationState = NavigationState()
+//    @StateObject private var navigationState = NavigationState()
     @State var userName = ""
     @State var email = ""
     @State var password = ""
@@ -129,6 +129,7 @@ struct RegistrationNewAccountView: View {
 //                            }
                             Task {
                                 try await signingViewModel.createUser(email: email, password: password, userName: userName)
+
                             }
                         }, label: {
                             Text(languageManager.localizedString(forKey: "Sign Up"))

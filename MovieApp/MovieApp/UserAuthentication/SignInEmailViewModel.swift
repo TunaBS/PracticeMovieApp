@@ -16,6 +16,7 @@
 //    @Published var successfulAccountCreation = false
 //    @Published var successfulLogin = false
 //    
+
 //    func signUp(email: String, password: String, userName: String, completion: @escaping (Bool) -> Void) {
 //        print("this is the email: \(email)")
 //        print("this is the password \(password)")
@@ -65,3 +66,4 @@
 //        
 //    }
 //}
+

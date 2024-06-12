@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LaunchScreenView: View {
+
     
     @ObservedObject var languageManager = LanguageManager.shared
     @Binding var hasCompletedOnboarding: Bool
@@ -21,20 +22,20 @@ struct LaunchScreenView: View {
                 .ignoresSafeArea()
                 .frame(width: geometry.size.width, height: geometry.size.height/1.3, alignment: .center)
             
-            ZStack(alignment: .bottom) {
-                // Background with curved shape (behind)
-                CurvedBackgroundShape()
-                    .fill(Color.black)
-                    .frame(height: geometry.size.height / 1.3)
-                    .offset(y: geometry.size.height * 1.1 )
-                
-                // Foreground with curved shape (front)
-                CurvedBackgroundShape()
-                    .fill(Color.white.opacity(0.2))
-                    .frame(height: geometry.size.height / 1.4)
-                    .offset(y: geometry.size.height * 1.1)
-            }
-            .edgesIgnoringSafeArea(.bottom)
+//            ZStack(alignment: .bottom) {
+//                // Background with curved shape (behind)
+//                CurvedBackgroundShape()
+//                    .fill(Color.black)
+//                    .frame(height: geometry.size.height / 1.3)
+//                    .offset(y: geometry.size.height * 1.1 )
+//                
+//                // Foreground with curved shape (front)
+//                CurvedBackgroundShape()
+//                    .fill(Color.white.opacity(0.2))
+//                    .frame(height: geometry.size.height / 1.4)
+//                    .offset(y: geometry.size.height * 1.1)
+//            }
+//            .edgesIgnoringSafeArea(.bottom)
             
             VStack{
                 Spacer()
@@ -79,6 +80,7 @@ struct LaunchScreenView: View {
                 .padding()
             }
             .padding()
+
         }
     }
 }
